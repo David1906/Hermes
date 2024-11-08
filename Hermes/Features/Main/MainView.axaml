@@ -39,9 +39,7 @@
                    Height="80"
                    Margin="30,10,30,30"
                    Classes="AppIcon"
-                   Source="avares://Hermes/AppData/Assets/logo-hermes.png"
-                   ToolTip.ShowDelay="0"
-                   ToolTip.Tip="{x:Static lang:Resources.c_main_window_tooltip_toggle_top_menu}" />
+                   Source="avares://Hermes/AppData/Assets/logo-hermes.png" />
         </suki:SukiSideMenu.HeaderContent>
     </suki:SukiSideMenu>
 </UserControl>

@@ -150,6 +150,7 @@ public partial class UutProcessorViewModel : PageBase
         {
             _logger.Error(e.Message);
             this.ShowErrorToast(e.Message);
+            this.Stop();
         }
     }
 
