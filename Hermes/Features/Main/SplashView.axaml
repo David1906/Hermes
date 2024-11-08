@@ -1,0 +1,35 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:local="clr-namespace:Hermes.Features.Main"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="Hermes.Features.Main.SplashView"
+             x:DataType="local:SplashViewModel">
+
+    <UserControl.Background>
+        <ImageBrush Source="avares://Hermes/AppData/Assets/splash-background.png"
+                    Stretch="Fill" />
+    </UserControl.Background>
+
+    <StackPanel MaxWidth="600" HorizontalAlignment="Center" VerticalAlignment="Center">
+        <Image Width="80"
+               Height="80"
+               Classes="AppIcon"
+               Source="avares://Hermes/AppData/Assets/logo-hermes.png" />
+
+        <TextBlock Text="Hermes by Ingrasys"
+                   Classes="h4"
+                   HorizontalAlignment="Center" />
+
+        <ProgressBar Classes="Accent"
+                     Margin="0 50 0 0"
+                     IsIndeterminate="True" />
+
+        <TextBlock Classes="caption"
+                   HorizontalAlignment="Center">
+            <Run Text="{Binding Text}" />
+            <Run Text="..." />
+        </TextBlock>
+    </StackPanel>
+</UserControl>

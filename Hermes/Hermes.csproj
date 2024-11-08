@@ -29,6 +29,11 @@
             <CopyToOutputDirectory>Always</CopyToOutputDirectory>
         </AvaloniaResource>
         <None Remove="AppData\Assets\splash-hermes.svg"/>
+        <None Remove="AppData\Assets\bg1.png" />
+        <None Remove="AppData\Assets\bg2.png" />
+        <AvaloniaResource Include="AppData\Assets\splash-background.png">
+          <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </AvaloniaResource>
     </ItemGroup>
 
     <ItemGroup>
@@ -101,6 +106,10 @@
         </Compile>
         <Compile Update="Features\Controls\TextBoxWithTitle.axaml.cs">
           <DependentUpon>TextBoxWithTitle.axaml</DependentUpon>
+          <SubType>Code</SubType>
+        </Compile>
+        <Compile Update="Features\Main\MainView.axaml.cs">
+          <DependentUpon>MainView.axaml</DependentUpon>
           <SubType>Code</SubType>
         </Compile>
     </ItemGroup>

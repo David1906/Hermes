@@ -1,11 +1,11 @@
-using Hermes.Language;
-using Material.Icons;
-using System.Reflection;
-using System.Threading.Tasks;
 using Avalonia.Controls.Notifications;
 using CommunityToolkit.Mvvm.Input;
+using Hermes.Language;
 using Hermes.Models;
+using Material.Icons;
 using SukiUI.Toasts;
+using System.Reflection;
+using System.Threading.Tasks;
 using Velopack;
 
 namespace Hermes.Features.About;
@@ -24,9 +24,7 @@ public partial class AboutViewModel(
     private async Task CheckForUpdates()
     {
         var mgr = new UpdateManager(settings.UpdateManagerUrl);
-
-        UpdateInfo newVersion = await mgr.CheckForUpdatesAsync();
-        
+        var newVersion = await mgr.CheckForUpdatesAsync();
         if (newVersion == null)
         {
             this.ShowSuccessToast(Resources.msg_no_updates_available);

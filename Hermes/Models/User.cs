@@ -1,12 +1,12 @@
-﻿using Hermes.Cipher.Types;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
+using Hermes.Cipher.Types;
 using Hermes.Common.Extensions;
+using Hermes.Language;
 using Hermes.Types;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
-using CommunityToolkit.Mvvm.ComponentModel;
-using Hermes.Language;
 
 namespace Hermes.Models;
 
@@ -16,7 +16,7 @@ public partial class User : ObservableValidator
 
     [Key] public int Id { get; set; }
 
-    [MaxLength(64) ]
+    [MaxLength(64)]
     [CustomValidation(typeof(User), nameof(ValidateEmployeeId))]
     public string EmployeeId { get; set; } = "";
 
@@ -52,7 +52,7 @@ public partial class User : ObservableValidator
     {
         if (int.TryParse(employeeId, out _))
         {
-            return ValidationResult.Success;
+            return ValidationResult.Success!;
         }
 
         return new(Resources.msg_invalid_employee_id);

@@ -11,8 +11,11 @@ using Hermes.Features;
 using Hermes.Repositories;
 using Hermes.Services;
 using Microsoft.Extensions.DependencyInjection;
-using System;
 using System.Diagnostics;
+using System;
+using System.Threading.Tasks;
+using CommunityToolkit.Mvvm.Messaging;
+using Hermes.Features.Main;
 
 namespace Hermes
 {
@@ -39,19 +42,34 @@ namespace Hermes
         {
             if (ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop)
             {
-                _provider.GetRequiredService<HermesLocalContext>().Migrate();
-                _provider.GetRequiredService<HermesRemoteContext>().Migrate();
-                _provider.GetRequiredService<ISettingsRepository>().Load();
-                _provider.GetRequiredService<PagePrototype>().Provider = _provider;
-
                 this._mainWindow = _provider.BuildWindow<MainWindowViewModel>(true);
                 desktop.MainWindow = this._mainWindow;
                 BrowserDialog.StorageProvider = desktop.MainWindow?.StorageProvider;
                 this._windowService = _provider.GetRequiredService<WindowService>();
                 this._windowService.Start();
+                Task.Run(this.InitializeMainView);
             }
 
             base.OnFrameworkInitializationCompleted();
+        }
+
+        private Task InitializeMainView()
+        {
+            if (this._mainWindow is null) return Task.CompletedTask;
+
+            _provider.GetRequiredService<ISettingsRepository>().Load();
+            WeakReferenceMessenger.Default.Send(new SplashMessage(Language.Resources.txt_migrating_local_context));
+            _provider.GetRequiredService<HermesLocalContext>().Migrate();
+            WeakReferenceMessenger.Default.Send(new SplashMessage(Language.Resources.txt_migrating_remote_context));
+            _provider.GetRequiredService<HermesRemoteContext>().Migrate();
+            _provider.GetRequiredService<PagePrototype>().Provider = _provider;
+            
+            Dispatcher.UIThread.Invoke(() =>
+            {
+                this._mainWindow.Content = _provider.GetRequiredService<MainViewModel>();
+            });
+            WeakReferenceMessenger.Default.Send(new SplashClosedMessage());
+            return Task.CompletedTask;
         }
 
         public static void Restart()

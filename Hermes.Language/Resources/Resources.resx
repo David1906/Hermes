@@ -818,4 +818,10 @@
     <data name="txt_update" xml:space="preserve">
         <value>Update</value>
     </data>
+    <data name="txt_migrating_local_context" xml:space="preserve">
+        <value>Migrating local context</value>
+    </data>
+    <data name="txt_migrating_remote_context" xml:space="preserve">
+        <value>Migrating remote context</value>
+    </data>
 </root>

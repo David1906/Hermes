@@ -1,6 +1,6 @@
 ﻿using CommunityToolkit.Mvvm.Messaging.Messages;
-using Hermes.Features;
+using System;
 
 namespace Hermes.Common.Messages;
 
-public class NavigateMessage(PageBase pageBase) : ValueChangedMessage<PageBase>(pageBase);
+public class NavigateMessage(Type type) : ValueChangedMessage<Type>(type);

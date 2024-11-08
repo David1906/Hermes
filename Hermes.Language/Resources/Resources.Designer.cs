@@ -1970,6 +1970,24 @@ namespace Hermes.Language {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Migrating local context.
+        /// </summary>
+        public static string txt_migrating_local_context {
+            get {
+                return ResourceManager.GetString("txt_migrating_local_context", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Migrating remote context.
+        /// </summary>
+        public static string txt_migrating_remote_context {
+            get {
+                return ResourceManager.GetString("txt_migrating_remote_context", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Minimum level.
         /// </summary>
         public static string txt_minimum_level {
