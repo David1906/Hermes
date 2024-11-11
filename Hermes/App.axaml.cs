@@ -47,10 +47,30 @@ namespace Hermes
                 BrowserDialog.StorageProvider = desktop.MainWindow?.StorageProvider;
                 this._windowService = _provider.GetRequiredService<WindowService>();
                 this._windowService.Start();
+                Win32Properties.AddWndProcHookCallback(desktop.MainWindow!, WndProcHook);
                 Task.Run(this.InitializeMainView);
             }
 
             base.OnFrameworkInitializationCompleted();
+        }
+
+        private IntPtr WndProcHook(IntPtr hwnd, uint msg, IntPtr wparam, IntPtr lparam, ref bool handled)
+        {
+            if (msg == NativeMethods.WM_SHOWME)
+            {
+                this._mainWindow?.Show();
+                this._mainWindow?.Activate();
+                if (this._mainWindow != null)
+                {
+                    var oldTopMost = this._mainWindow.Topmost;
+                    this._mainWindow.Topmost = true;
+                    this._mainWindow.Topmost = oldTopMost;
+                }
+
+                handled = true;
+            }
+
+            return IntPtr.Zero;
         }
 
         private Task InitializeMainView()
@@ -63,7 +83,7 @@ namespace Hermes
             WeakReferenceMessenger.Default.Send(new SplashMessage(Language.Resources.txt_migrating_remote_context));
             _provider.GetRequiredService<HermesRemoteContext>().Migrate();
             _provider.GetRequiredService<PagePrototype>().Provider = _provider;
-            
+
             Dispatcher.UIThread.Invoke(() =>
             {
                 this._mainWindow.Content = _provider.GetRequiredService<MainViewModel>();
