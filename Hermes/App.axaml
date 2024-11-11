@@ -44,14 +44,8 @@
                 <TrayIcon.Menu>
                     <NativeMenu>
                         <NativeMenuItem Header="{x:Static lang:Resources.txt_open_hermes_app}"
+                                        Icon="avares://Hermes/AppData/Assets/logo-hermes.png"
                                         Click="NativeMenuItem_OnClick" />
-                        <NativeMenuItem Header="Settings">
-                            <NativeMenu>
-                                <NativeMenuItem Header="Option 2" />
-                                <NativeMenuItemSeparator />
-                                <NativeMenuItem Header="Option 3" />
-                            </NativeMenu>
-                        </NativeMenuItem>
                     </NativeMenu>
                 </TrayIcon.Menu>
             </TrayIcon>

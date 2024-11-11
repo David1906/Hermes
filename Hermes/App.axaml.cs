@@ -58,15 +58,7 @@ namespace Hermes
         {
             if (msg == NativeMethods.WM_SHOWME)
             {
-                this._mainWindow?.Show();
-                this._mainWindow?.Activate();
-                if (this._mainWindow != null)
-                {
-                    var oldTopMost = this._mainWindow.Topmost;
-                    this._mainWindow.Topmost = true;
-                    this._mainWindow.Topmost = oldTopMost;
-                }
-
+                this.ShowMainWindow();
                 handled = true;
             }
 
@@ -109,6 +101,11 @@ namespace Hermes
         }
 
         private void NativeMenuItem_OnClick(object? sender, EventArgs e)
+        {
+            this.ShowMainWindow();
+        }
+
+        private void ShowMainWindow()
         {
             this._mainWindow?.Show();
             this._mainWindow?.Activate();
