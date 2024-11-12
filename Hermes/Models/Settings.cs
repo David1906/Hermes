@@ -27,7 +27,7 @@ public class Settings
     public bool AutostartUutProcessor { get; set; } = true;
     public string InputPath { get; set; } = @".\Input";
     public string BackupPath { get; set; } = @".\Backup";
-    public string SfcPath { get; set; } = @".\Sfc";
+    public string SfcPath { get; set; } = @"Z:\";
     public int SfcTimeoutSeconds { get; set; } = 10;
     public int UutSuccessWindowTimeoutSeconds { get; set; } = 5;
     public int MaxSfcRetries { get; set; } = 1;

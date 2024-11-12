@@ -228,7 +228,7 @@ public partial class SettingsConfigModel(
         Description = "c_settings_header_input_path",
         Category = "c_settings_category_uut_processor",
         Group = "c_settings_group_paths")]
-    private string _inputPath = string.Empty;
+    private string _inputPath = @".\Input";
 
     [ObservableProperty]
     [property: BrowserConfig(BrowserMode = BrowserMode.OpenFolder, Filter = "Folder:*.*")]
@@ -237,7 +237,7 @@ public partial class SettingsConfigModel(
         Description = "c_settings_header_backup_path",
         Category = "c_settings_category_uut_processor",
         Group = "c_settings_group_paths")]
-    private string _backupPath = string.Empty;
+    private string _backupPath = @".\Backup";
 
     [ObservableProperty]
     [property: BrowserConfig(BrowserMode = BrowserMode.OpenFolder, Filter = "Folder:*.*")]
@@ -246,7 +246,7 @@ public partial class SettingsConfigModel(
         Description = "c_settings_header_sfc_path",
         Category = "c_settings_category_uut_processor",
         Group = "c_settings_group_paths")]
-    private string _sfcPath = string.Empty;
+    private string _sfcPath = @"Z:\";
 
     public static FileExtension[] FileExtensions => EnumExtensions.GetValues<FileExtension>();
 
