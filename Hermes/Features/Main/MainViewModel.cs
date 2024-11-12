@@ -63,6 +63,7 @@ public partial class MainViewModel : ViewModelBase
             .Except(this.ShownPages)
             .OrderBy(x => x.Index)
             .ToList());
+        visiblePages.ForEach(x => { x.IsActive = true; });
     }
 
     private void ClearPages(List<PageBase> visiblePages)
