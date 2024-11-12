@@ -25,6 +25,8 @@ public partial class UutProcessorViewModel : PageBase
     [ObservableProperty] private string _path = "";
     [ObservableProperty] private string _stateText = Resources.enum_stopped;
     [ObservableProperty] private bool _isWaitingForDummy;
+    [ObservableProperty] private bool _isScannerVisible;
+    [ObservableProperty] private bool _isEnterDummyVisible;
     public ReactiveProperty<UnitUnderTest> CurrentUnitUnderTest { get; } = new(Models.UnitUnderTest.Null);
     public ScannerViewModel ScannerViewModel { get; }
     public DummyViewModel DummyViewModel { get; }
@@ -59,6 +61,8 @@ public partial class UutProcessorViewModel : PageBase
         this._stopService = stopService;
         this._unitUnderTestRepository = unitUnderTestRepository;
         this._uutSenderService = uutSenderServiceFactory.Build();
+        this.IsScannerVisible = settings.Machine == MachineType.ScreenPrinter;
+        this.IsEnterDummyVisible = settings.Machine == MachineType.ScreenPrinter;
         this.CurrentUnitUnderTest = this._uutSenderService
             .UnitUnderTest
             .ToBindableReactiveProperty<UnitUnderTest>();

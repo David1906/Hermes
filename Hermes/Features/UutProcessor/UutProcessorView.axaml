@@ -22,11 +22,13 @@
             <!-- Scanner -->
             <local:ScannerView Grid.Row="0"
                                Grid.Column="1"
+                               IsVisible="{Binding $parent[UserControl].((local:UutProcessorViewModel)DataContext).IsScannerVisible}"
                                DataContext="{Binding ScannerViewModel}" />
 
             <!-- Dummy view-->
             <local:DummyView Grid.Row="0"
                              Grid.Column="0"
+                             IsVisible="{Binding $parent[UserControl].((local:UutProcessorViewModel)DataContext).IsEnterDummyVisible}"
                              DataContext="{Binding DummyViewModel}" />
             
              <!-- Uut processor -->
