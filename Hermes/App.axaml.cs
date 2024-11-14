@@ -3,19 +3,19 @@ using Avalonia.Controls;
 using Avalonia.Markup.Xaml;
 using Avalonia.Threading;
 using Avalonia;
+using CommunityToolkit.Mvvm.Messaging;
 using ConfigFactory.Avalonia.Helpers;
 using Hermes.Common.Extensions;
 using Hermes.Common.Messages;
 using Hermes.Common;
+using Hermes.Features.Main;
 using Hermes.Features;
 using Hermes.Repositories;
 using Hermes.Services;
 using Microsoft.Extensions.DependencyInjection;
 using System.Diagnostics;
-using System;
 using System.Threading.Tasks;
-using CommunityToolkit.Mvvm.Messaging;
-using Hermes.Features.Main;
+using System;
 
 namespace Hermes
 {
@@ -42,6 +42,7 @@ namespace Hermes
         {
             if (ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop)
             {
+                _provider.GetRequiredService<ISettingsRepository>().Load();
                 this._mainWindow = _provider.BuildWindow<MainWindowViewModel>(true);
                 desktop.MainWindow = this._mainWindow;
                 BrowserDialog.StorageProvider = desktop.MainWindow?.StorageProvider;
@@ -69,7 +70,6 @@ namespace Hermes
         {
             if (this._mainWindow is null) return Task.CompletedTask;
 
-            _provider.GetRequiredService<ISettingsRepository>().Load();
             WeakReferenceMessenger.Default.Send(new SplashMessage(Language.Resources.txt_migrating_local_context));
             _provider.GetRequiredService<HermesLocalContext>().Migrate();
             WeakReferenceMessenger.Default.Send(new SplashMessage(Language.Resources.txt_migrating_remote_context));
