@@ -1,18 +1,18 @@
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Messaging;
-using DynamicData;
 using Hermes.Common.Messages;
 using Hermes.Models;
 using R3;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using Hermes.Common;
 
 namespace Hermes.Features.Main;
 
 public partial class MainViewModel : ViewModelBase
 {
-    public ObservableCollection<PageBase> ShownPages { get; set; } = [];
+    public RangeObservableCollection<PageBase> ShownPages { get; set; } = [];
     [ObservableProperty] private PageBase? _activePage;
 
     private readonly PagePrototype _pagePrototype;
@@ -72,6 +72,6 @@ public partial class MainViewModel : ViewModelBase
             .Except(visiblePages)
             .ToList();
         pagesToRemove.ForEach(x => { x.IsActive = false; });
-        this.ShownPages.RemoveMany(pagesToRemove);
+        this.ShownPages.RemoveRange(pagesToRemove);
     }
 }
