@@ -100,7 +100,7 @@
                 </TextBlock>
 
                 <TextBlock
-                    Margin="10 0"
+                    Margin="15 0"
                     TextAlignment="Center"
                     Classes="h4"
                     Text="{Binding  SerialNumber}" />

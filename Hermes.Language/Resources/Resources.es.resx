@@ -815,4 +815,28 @@
     <data name="txt_migrating_remote_context" xml:space="preserve">
         <value>Migrando contexto remoto</value>
     </data>
+    <data name="txt_failed" xml:space="preserve">
+        <value>Falló</value>
+    </data>
+    <data name="txt_passed" xml:space="preserve">
+        <value>Pasó</value>
+    </data>
+    <data name="msg_limited_to_500_logs" xml:space="preserve">
+        <value>Para mejorar el rendimiento sólo se mostrarán los últimos 500 registros</value>
+    </data>
+    <data name="txt_time_span" xml:space="preserve">
+        <value>Periodo de tiempo</value>
+    </data>
+    <data name="enum_eighthours" xml:space="preserve">
+        <value>Ocho horas</value>
+    </data>
+    <data name="enum_oneday" xml:space="preserve">
+        <value>Un día</value>
+    </data>
+    <data name="enum_onehour" xml:space="preserve">
+        <value>Una hora</value>
+    </data>
+    <data name="enum_sevendays" xml:space="preserve">
+        <value>Siete días</value>
+    </data>
 </root>

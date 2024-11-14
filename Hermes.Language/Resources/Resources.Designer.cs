@@ -674,6 +674,15 @@ namespace Hermes.Language {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Eight hours.
+        /// </summary>
+        public static string enum_eighthours {
+            get {
+                return ResourceManager.GetString("enum_eighthours", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Engineer.
         /// </summary>
         public static string enum_engineer {
@@ -859,6 +868,24 @@ namespace Hermes.Language {
         public static string enum_ok {
             get {
                 return ResourceManager.GetString("enum_ok", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to One day.
+        /// </summary>
+        public static string enum_oneday {
+            get {
+                return ResourceManager.GetString("enum_oneday", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to One hour.
+        /// </summary>
+        public static string enum_onehour {
+            get {
+                return ResourceManager.GetString("enum_onehour", resourceCulture);
             }
         }
         
@@ -1052,6 +1079,15 @@ namespace Hermes.Language {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Seven days.
+        /// </summary>
+        public static string enum_sevendays {
+            get {
+                return ResourceManager.GetString("enum_sevendays", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Stopped.
         /// </summary>
         public static string enum_stopped {
@@ -1210,6 +1246,15 @@ namespace Hermes.Language {
         public static string msg_invalid_user_password {
             get {
                 return ResourceManager.GetString("msg_invalid_user_password", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to To improve performance, only the last 500 records will be displayed.
+        /// </summary>
+        public static string msg_limited_to_500_logs {
+            get {
+                return ResourceManager.GetString("msg_limited_to_500_logs", resourceCulture);
             }
         }
         
@@ -1754,6 +1799,15 @@ namespace Hermes.Language {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Failed.
+        /// </summary>
+        public static string txt_failed {
+            get {
+                return ResourceManager.GetString("txt_failed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Feature Permissions.
         /// </summary>
         public static string txt_features_permissions {
@@ -2042,6 +2096,15 @@ namespace Hermes.Language {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Passed.
+        /// </summary>
+        public static string txt_passed {
+            get {
+                return ResourceManager.GetString("txt_passed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Password.
         /// </summary>
         public static string txt_password {
@@ -2308,6 +2371,15 @@ namespace Hermes.Language {
         public static string txt_test_status {
             get {
                 return ResourceManager.GetString("txt_test_status", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Time span.
+        /// </summary>
+        public static string txt_time_span {
+            get {
+                return ResourceManager.GetString("txt_time_span", resourceCulture);
             }
         }
         
