@@ -41,6 +41,7 @@ public class Settings
     public bool EnableMachineStop { get; set; } = true;
     public string CriticalLocations { get; set; } = "U1";
     public string UpdateManagerUrl { get; set; } = @"10.12.204.48/hermes/download";
+    public string ScannerFilter { get; set; } = @"1A\w+$";
 
     #endregion
 

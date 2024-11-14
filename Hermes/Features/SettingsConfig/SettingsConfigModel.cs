@@ -174,6 +174,14 @@ public partial class SettingsConfigModel(
 
     [ObservableProperty]
     [property: Config(
+        Header = "c_settings_header_scanner_filter",
+        Description = "c_settings_description_scanner_filter",
+        Category = "c_settings_category_uut_processor",
+        Group = "c_settings_group_common")]
+    private string _scannerFilter = @"1A\w+$";
+
+    [ObservableProperty]
+    [property: Config(
         Header = "c_settings_header_autostart_uut_processor",
         Description = "c_settings_header_autostart_uut_processor",
         Category = "c_settings_category_uut_processor",
@@ -344,6 +352,7 @@ public partial class SettingsConfigModel(
     partial void OnStationChanged(StationType value)
     {
         AdditionalOkSfcResponse = "";
+        ScannerFilter = "";
         switch (value)
         {
             case StationType.Labeling:
@@ -380,6 +389,7 @@ public partial class SettingsConfigModel(
                 AdditionalOkSfcResponse = value == StationType.ScreenPrinterBottom
                     ? "GO-SPI_B"
                     : "GO-SPI_T";
+                ScannerFilter = @"1A\w+$";
                 break;
             case StationType.Aoi1:
             case StationType.Aoi2:

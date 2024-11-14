@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
+using System.Text.RegularExpressions;
 using Hermes.Models;
 using R3;
 
@@ -78,10 +79,18 @@ public class SerialScanner
         {
             _serialPort.DiscardInBuffer();
         }
+        
+        scannedText = this.Filter(scannedText);
 
         ScannedText.OnNext(scannedText);
         this.State.Value = StateType.Idle;
         return scannedText;
+    }
+
+    private string Filter(string scannedText)
+    {
+        if (string.IsNullOrEmpty(_settings.ScannerFilter)) return scannedText;
+        return Regex.Match(scannedText.Trim(), _settings.ScannerFilter).Value;
     }
 
     private async Task WriteAsync(string command)

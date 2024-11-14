@@ -206,6 +206,15 @@ namespace Hermes.Language {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Filters the scanned text with the specified regex, taking the first match.
+        /// </summary>
+        public static string c_settings_description_scanner_filter {
+            get {
+                return ResourceManager.GetString("c_settings_description_scanner_filter", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Close success window when this time is over.
         /// </summary>
         public static string c_settings_description_success_window_timeout {
@@ -418,6 +427,15 @@ namespace Hermes.Language {
         public static string c_settings_header_scanner_com_port {
             get {
                 return ResourceManager.GetString("c_settings_header_scanner_com_port", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Scanner filter regex.
+        /// </summary>
+        public static string c_settings_header_scanner_filter {
+            get {
+                return ResourceManager.GetString("c_settings_header_scanner_filter", resourceCulture);
             }
         }
         

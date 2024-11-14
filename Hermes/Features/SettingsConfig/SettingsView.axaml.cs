@@ -13,7 +13,21 @@ public partial class SettingsView : Window
     public SettingsView()
     {
         InitializeComponent();
+        this.Closing += Window_OnClosing;
         this.Closed += (_, _) => this._isClosed = true;
+    }
+
+    private void Window_OnClosing(object? sender, WindowClosingEventArgs e)
+    {
+        if (this.CanClose)
+        {
+            e.Cancel = false;
+        }
+        else
+        {
+            e.Cancel = true;
+            this.Hide();
+        }
     }
 
     public void Append(SettingsConfigModel settingsConfigModel)

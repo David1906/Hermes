@@ -839,4 +839,10 @@
     <data name="enum_sevendays" xml:space="preserve">
         <value>Siete días</value>
     </data>
+    <data name="c_settings_description_scanner_filter" xml:space="preserve">
+        <value>Filtra el texto escaneado utilizando la expresión regular especificada, toma la primera coincidencia.</value>
+    </data>
+    <data name="c_settings_header_scanner_filter" xml:space="preserve">
+        <value>Filtro de escáner (regex)</value>
+    </data>
 </root>

@@ -848,4 +848,10 @@
     <data name="enum_sevendays" xml:space="preserve">
         <value>Seven days</value>
     </data>
+    <data name="c_settings_header_scanner_filter" xml:space="preserve">
+        <value>Scanner filter regex</value>
+    </data>
+    <data name="c_settings_description_scanner_filter" xml:space="preserve">
+        <value>Filters the scanned text with the specified regex, taking the first match</value>
+    </data>
 </root>
