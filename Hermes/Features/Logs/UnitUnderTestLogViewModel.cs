@@ -43,8 +43,6 @@ public partial class UnitUnderTestLogViewModel : ViewModelBase
     {
         _fileService = fileService;
         _unitUnderTestRepository = unitUnderTestRepository;
-
-        LoadLogsAsync().ConfigureAwait(false);
     }
 
     private async Task LoadLogsAsync()

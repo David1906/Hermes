@@ -854,4 +854,19 @@
     <data name="c_settings_description_scanner_filter" xml:space="preserve">
         <value>Filters the scanned text with the specified regex, taking the first match</value>
     </data>
+    <data name="txt_details" xml:space="preserve">
+        <value>Details</value>
+    </data>
+    <data name="txt_is_restored" xml:space="preserve">
+        <value>Is restored</value>
+    </data>
+    <data name="txt_closed_at" xml:space="preserve">
+        <value>Closed at</value>
+    </data>
+    <data name="txt_true" xml:space="preserve">
+        <value>True</value>
+    </data>
+    <data name="txt_false" xml:space="preserve">
+        <value>False</value>
+    </data>
 </root>

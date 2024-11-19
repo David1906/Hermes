@@ -1637,6 +1637,15 @@ namespace Hermes.Language {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Closed at.
+        /// </summary>
+        public static string txt_closed_at {
+            get {
+                return ResourceManager.GetString("txt_closed_at", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Com port.
         /// </summary>
         public static string txt_com_port {
@@ -1714,6 +1723,15 @@ namespace Hermes.Language {
         public static string txt_department {
             get {
                 return ResourceManager.GetString("txt_department", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Details.
+        /// </summary>
+        public static string txt_details {
+            get {
+                return ResourceManager.GetString("txt_details", resourceCulture);
             }
         }
         
@@ -1822,6 +1840,15 @@ namespace Hermes.Language {
         public static string txt_failed {
             get {
                 return ResourceManager.GetString("txt_failed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to False.
+        /// </summary>
+        public static string txt_false {
+            get {
+                return ResourceManager.GetString("txt_false", resourceCulture);
             }
         }
         
@@ -1948,6 +1975,15 @@ namespace Hermes.Language {
         public static string txt_invalid_token {
             get {
                 return ResourceManager.GetString("txt_invalid_token", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Is restored.
+        /// </summary>
+        public static string txt_is_restored {
+            get {
+                return ResourceManager.GetString("txt_is_restored", resourceCulture);
             }
         }
         
@@ -2434,6 +2470,15 @@ namespace Hermes.Language {
         public static string txt_trigger {
             get {
                 return ResourceManager.GetString("txt_trigger", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to True.
+        /// </summary>
+        public static string txt_true {
+            get {
+                return ResourceManager.GetString("txt_true", resourceCulture);
             }
         }
         

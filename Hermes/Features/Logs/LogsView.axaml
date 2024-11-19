@@ -4,11 +4,18 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              xmlns:local="clr-namespace:Hermes.Features.Logs"
+             xmlns:lang="clr-namespace:Hermes.Language;assembly=Hermes.Language"
              x:Class="Hermes.Features.Logs.LogsView"
              x:DataType="local:LogsViewModel">
 
-    <Grid>
+    <TabControl Margin="{StaticResource DefaultMargin}">
 
-        <local:UnitUnderTestLogView DataContext="{Binding UnitUnderTestLogViewModel}" />
-    </Grid>
+        <TabItem Header="{x:Static lang:Resources.txt_uut_processor}">
+            <local:UnitUnderTestLogView DataContext="{Binding UnitUnderTestLogViewModel}" />
+        </TabItem>
+
+        <TabItem Header="{x:Static lang:Resources.txt_stop}">
+            <local:StopLogView DataContext="{Binding StopLogViewModel}" />
+        </TabItem>
+    </TabControl>
 </UserControl>

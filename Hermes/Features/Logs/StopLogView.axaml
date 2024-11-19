@@ -1,0 +1,140 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:controls="clr-namespace:Hermes.Features.Controls"
+             xmlns:converters="clr-namespace:Hermes.Common.Converters"
+             xmlns:i="clr-namespace:Avalonia.Xaml.Interactivity;assembly=Avalonia.Xaml.Interactivity"
+             xmlns:ia="clr-namespace:Avalonia.Xaml.Interactions.Core;assembly=Avalonia.Xaml.Interactions"
+             xmlns:lang="clr-namespace:Hermes.Language;assembly=Hermes.Language"
+             xmlns:sukiUi="clr-namespace:SukiUI.Controls;assembly=SukiUI"
+             xmlns:local="clr-namespace:Hermes.Features.Logs"
+             Background="{DynamicResource SukiBackground}"
+             mc:Ignorable="d" d:DesignWidth="1300" d:DesignHeight="600"
+             x:Class="Hermes.Features.Logs.StopLogView"
+             x:DataType="local:StopLogViewModel">
+
+    <UserControl.Styles>
+        <Style Selector="DataGridColumnHeader">
+            <Setter Property="HorizontalContentAlignment" Value="Center" />
+        </Style>
+    </UserControl.Styles>
+
+    <sukiUi:GlassCard Margin="10"
+                      HorizontalAlignment="Stretch">
+
+        <Grid Margin="0 20"
+              RowDefinitions="Auto, *, Auto"
+              ColumnDefinitions="*, Auto">
+
+            <!-- Filters -->
+            <WrapPanel Grid.Row="0"
+                       Grid.Column="0"
+                       Orientation="Horizontal">
+
+                <controls:TextBoxWithTitle Name="SerialNumberFilter"
+                                           Width="200"
+                                           VerticalAlignment="Bottom"
+                                           KeyBindings=""
+                                           Title="{x:Static lang:Resources.txt_serial_number}"
+                                           Text="{Binding SerialNumberFilter, Mode=TwoWay}">
+                    <controls:TextBoxWithTitle.KeyBindings>
+                        <KeyBinding Gesture="Enter" Command="{Binding SearchCommand}" />
+                    </controls:TextBoxWithTitle.KeyBindings>
+                </controls:TextBoxWithTitle>
+
+                <controls:ComboBoxEnum Width="200"
+                                       Title="{x:Static lang:Resources.txt_stop}"
+                                       ItemsSource="{Binding StopTypeOptions}"
+                                       SelectedItem="{Binding SelectedStopType, Mode=TwoWay}" />
+
+                <controls:TextBoxWithTitle Name="SfcResponseContentFilterTextBox"
+                                           Width="200"
+                                           VerticalAlignment="Bottom"
+                                           KeyBindings=""
+                                           Title="{x:Static lang:Resources.txt_details}"
+                                           Text="{Binding DetailsFilter, Mode=TwoWay}">
+                    <controls:TextBoxWithTitle.KeyBindings>
+                        <KeyBinding Gesture="Enter" Command="{Binding SearchCommand}" />
+                    </controls:TextBoxWithTitle.KeyBindings>
+                </controls:TextBoxWithTitle>
+
+                <controls:ComboBoxEnum Width="200"
+                                       Title="{x:Static lang:Resources.txt_time_span}"
+                                       ItemsSource="{Binding TimeSpanOptions}"
+                                       SelectedItem="{Binding SelectedTimeSpan, Mode=TwoWay}" />
+
+                <controls:ButtonIcon VerticalAlignment="Bottom"
+                                     Margin="0 0 0 5"
+                                     Command="{Binding SearchCommand}"
+                                     Kind="Search" />
+            </WrapPanel>
+
+            <!-- Actions -->
+            <StackPanel Grid.Row="0"
+                        Grid.Column="1"
+                        Margin="20 0 0 5"
+                        Orientation="Horizontal"
+                        VerticalAlignment="Bottom"
+                        HorizontalAlignment="Right"
+                        Spacing="5">
+
+                <controls:ButtonIcon Kind="Refresh"
+                                     Command="{Binding RefreshCommand}"
+                                     ToolTip.Tip="{x:Static lang:Resources.txt_refresh}" />
+            </StackPanel>
+
+            <!-- Grid -->
+            <ScrollViewer Grid.Row="1"
+                          Grid.Column="0"
+                          Grid.ColumnSpan="2"
+                          HorizontalScrollBarVisibility="Auto"
+                          VerticalScrollBarVisibility="Auto">
+
+                <DataGrid AutoGenerateColumns="False"
+                          Name="DataGridLogs"
+                          ItemsSource="{Binding UnitsUnderTest}"
+                          IsReadOnly="True"
+                          HeadersVisibility="Column"
+                          CanUserResizeColumns="True">
+
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="{x:Static lang:Resources.txt_serial_number}"
+                                            Binding="{Binding SerialNumber}" />
+
+                        <DataGridTextColumn Header="{x:Static lang:Resources.txt_stop}"
+                                            Binding="{Binding Stop.Type,  Converter={x:Static converters:EnumToTranslatedTextConverters.Generic}}" />
+
+                        <DataGridTextColumn Header="{x:Static lang:Resources.txt_details}"
+                                            Binding="{Binding Stop.Details}" />
+
+                        <DataGridTextColumn Header="{x:Static lang:Resources.txt_actions}"
+                                            Binding="{Binding Stop.Actions}" />
+
+                        <DataGridTextColumn Header="{x:Static lang:Resources.txt_is_restored}"
+                                            Binding="{Binding Stop.IsRestored, Converter={x:Static converters:BoolToTextConverters.TrueFalse}}" />
+
+                        <DataGridTextColumn Header="{x:Static lang:Resources.txt_user}"
+                                            Binding="{Binding Stop.UsersConcatenated}" />
+
+                        <DataGridTextColumn Header="{x:Static lang:Resources.txt_created_at}"
+                                            Binding="{Binding CreatedAt}" />
+
+                        <DataGridTextColumn Header="{x:Static lang:Resources.txt_closed_at}"
+                                            Binding="{Binding Stop.ClosedAt}" />
+
+                    </DataGrid.Columns>
+                </DataGrid>
+            </ScrollViewer>
+
+            <TextBlock Grid.Row="2"
+                       Grid.Column="0"
+                       Grid.ColumnSpan="2"
+                       Margin="0 10 0 0"
+                       Classes="caption">
+                <Run Text="* " />
+                <Run Text="{x:Static lang:Resources.msg_limited_to_500_logs}" />
+            </TextBlock>
+        </Grid>
+    </sukiUi:GlassCard>
+</UserControl>

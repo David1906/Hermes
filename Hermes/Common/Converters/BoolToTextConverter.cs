@@ -9,6 +9,7 @@ namespace Hermes.Common.Converters;
 public static class BoolToTextConverters
 {
     public static readonly BoolToTextConverter PassFail = new(Resources.txt_passed, Resources.txt_failed);
+    public static readonly BoolToTextConverter TrueFalse = new(Resources.txt_true, Resources.txt_false);
 }
 
 public class BoolToTextConverter(string trueText, string falseText) : IValueConverter
