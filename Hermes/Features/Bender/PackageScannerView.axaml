@@ -221,7 +221,9 @@
             <Border DockPanel.Dock="Bottom"
                     Background="Gray"
                     CornerRadius="{StaticResource DefaultCornerRadius}"
+                    VerticalAlignment="Center"
                     Margin="0 5 0 0">
+                
                 <TextBlock HorizontalAlignment="Center"
                            VerticalAlignment="Center"
                            FontSize="25"

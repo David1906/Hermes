@@ -15,7 +15,7 @@
              x:DataType="local:PackageTrackingViewModel">
 
     <controls:GlassCard Margin="{StaticResource DefaultMargin}"
-                        Width="610">
+                        MinWidth="610">
 
         <suki:BusyArea BusyText="{x:Static lang:Resources.txt_loading}"
                        IsBusy="{Binding IsDataLoading}">
