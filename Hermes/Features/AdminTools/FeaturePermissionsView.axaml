@@ -21,7 +21,7 @@
                       MinWidth="500"
                       MaxWidth="900">
 
-        <sukiUi:BusyArea BusyText="{x:Static lang:Resources.txt_logging_in}"
+        <sukiUi:BusyArea BusyText="{x:Static lang:Resources.txt_loading}"
                          IsBusy="{Binding IsLoading}">
 
             <Grid RowDefinitions="Auto,Auto, *"

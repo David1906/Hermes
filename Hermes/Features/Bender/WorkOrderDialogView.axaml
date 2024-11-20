@@ -12,7 +12,7 @@
 
     <suki:GroupBox Header="Change Work Order" MaxWidth="500" Padding="10">
 
-        <suki:BusyArea BusyText="{x:Static lang:Resources.txt_logging_in}"
+        <suki:BusyArea BusyText="{x:Static lang:Resources.txt_loading}"
                        IsBusy="{Binding IsWorkOrderLoading}">
 
 

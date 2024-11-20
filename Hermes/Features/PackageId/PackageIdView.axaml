@@ -24,7 +24,7 @@
                               Width="550"
                               Height="500">
 
-                <suki:BusyArea BusyText="{x:Static lang:Resources.txt_logging_in}"
+                <suki:BusyArea BusyText="{x:Static lang:Resources.txt_loading}"
                                IsBusy="{Binding IsWorkOrderLoading}">
 
                     <DockPanel>
@@ -105,7 +105,7 @@
                               Width="550"
                               Height="500">
 
-                <suki:BusyArea BusyText="{x:Static lang:Resources.txt_logging_in}"
+                <suki:BusyArea BusyText="{x:Static lang:Resources.txt_loading}"
                                IsBusy="{Binding IsLoadingPkgid}">
                     <DockPanel>
 

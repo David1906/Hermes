@@ -136,6 +136,7 @@ public partial class PackageIdViewModel : PageBase
         catch (Exception)
         {
             this.WorkOrder = WorkOrder.Null;
+            this.ShowErrorToast(Resources.msg_error_while_getting_info_from_db);
         }
         finally
         {

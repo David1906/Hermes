@@ -90,7 +90,7 @@ public class SfcOracleRepository : ISfcRepository
             whereClause = "pkg_track.LINE = :line AND pkg_track.SCANNED_AT BETWEEN :fromDate AND :toDate";
         }
 
-        return await this.Query<Package>($"""
+        return await this.QueryAsync<Package>($"""
                                           SELECT *
                                           FROM (
                                               SELECT MAX(pkg_track.PKGID)             AS Id,
@@ -115,7 +115,7 @@ public class SfcOracleRepository : ISfcRepository
 
     public async Task<IEnumerable<UnitUnderTest>> FindAllUnitsUnderTest(string pkgid)
     {
-        return await this.Query<UnitUnderTest>($"""
+        return await this.QueryAsync<UnitUnderTest>($"""
                                                 SELECT
                                                     rownum AS Id,
                                                     SerialNumber,
@@ -133,7 +133,7 @@ public class SfcOracleRepository : ISfcRepository
 
     public async Task<Package> FindPackage(string pkgid)
     {
-        var result = await this.Query<Package>($"""
+        var result = await this.QueryAsync<Package>($"""
                                                 SELECT PKG_ID      AS Id,
                                                        QTY         AS Quantity,
                                                        CDATE       AS Opened,
@@ -150,7 +150,7 @@ public class SfcOracleRepository : ISfcRepository
 
     public async Task<WorkOrder> FindWorkOrder(string workOrder)
     {
-        var result = await this.Query<WorkOrder>($"""
+        var result = await this.QueryAsync<WorkOrder>($"""
                                                   SELECT
                                                       WORK_ORDER AS Id,
                                                       PART_NO As PartNumber,
@@ -168,7 +168,7 @@ public class SfcOracleRepository : ISfcRepository
 
     public async Task<IEnumerable<Package>> FindAllPackages(string workOrder)
     {
-        return await this.Query<Package>($"""
+        return await this.QueryAsync<Package>($"""
                                           SELECT 
                                               PKGID         AS Id,
                                               MAX(QTY)       AS Quantity,
@@ -227,7 +227,7 @@ public class SfcOracleRepository : ISfcRepository
 
     private async Task<IEnumerable<User>> FindAllUsers(string whereClause, object param)
     {
-        return await this.Query<User>($"""
+        return await this.QueryAsync<User>($"""
                                        SELECT 
                                            EMPLOYEE_ID EmployeeId,
                                            NAME Name,
@@ -243,7 +243,7 @@ public class SfcOracleRepository : ISfcRepository
 
     public async Task<IEnumerable<FeaturePermission>> FindAllFeaturePermissions(DepartmentType department)
     {
-        return await this.Query<FeaturePermission>($"""
+        return await this.QueryAsync<FeaturePermission>($"""
                                                     SELECT FEATURE         Feature,
                                                            DEPARTMENT      Department,
                                                            USER_LEVEL "Level"
@@ -282,7 +282,7 @@ public class SfcOracleRepository : ISfcRepository
 
     private async Task<bool> UserExists(string userEmployeeId)
     {
-        var result = await this.Query<User>($"""
+        var result = await this.QueryAsync<User>($"""
                                              SELECT EMPLOYEE_ID as EmployeeId
                                              FROM SFISM4.H_USERS
                                              WHERE EMPLOYEE_ID = :employeeId
@@ -310,12 +310,12 @@ public class SfcOracleRepository : ISfcRepository
         };
     }
 
-    private async Task<IEnumerable<T>> Query<T>(string sql, object? param = null)
+    private async Task<IEnumerable<T>> QueryAsync<T>(string sql, object? param = null)
     {
         await using var connection = new OracleConnection(ConString);
         try
         {
-            connection.Open();
+            await connection.OpenAsync();
             return await connection.QueryAsync<T>(sql, param);
         }
         catch (Exception e) when (e is OracleException)
@@ -333,7 +333,7 @@ public class SfcOracleRepository : ISfcRepository
         await using var connection = new OracleConnection(ConString);
         try
         {
-            connection.Open();
+            await connection.OpenAsync();
             return await connection.ExecuteAsync(sql, param);
         }
         catch (Exception e) when (e is OracleException)

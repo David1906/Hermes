@@ -12,7 +12,7 @@
 
     <suki:GroupBox Header="{x:Static lang:Resources.txt_user_management}" MaxWidth="400" Padding="10">
 
-        <suki:BusyArea BusyText="{x:Static lang:Resources.txt_logging_in}"
+        <suki:BusyArea BusyText="{x:Static lang:Resources.txt_loading}"
                        IsBusy="{Binding IsLoading}">
 
             <StackPanel Margin="{StaticResource DefaultMargin}"
