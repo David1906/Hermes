@@ -1,13 +1,12 @@
 using Hermes.Common.Extensions;
 using Hermes.Common.Parsers;
 using Hermes.Models;
-using Hermes.Repositories;
 using Hermes.Services;
 using Hermes.Types;
 using System.Collections.Generic;
 using System.IO;
-using System.Threading.Tasks;
 using System;
+using System.Threading.Tasks;
 
 namespace Hermes.Builders;
 
@@ -67,9 +66,17 @@ public class UnitUnderTestBuilder
         return parser.GetTestContent(this._serialNumber, this._isPass, this.Defects);
     }
 
-    public UnitUnderTest Build(TextDocument textDocument)
+    public async Task<UnitUnderTest> BuildAsync(TextDocument textDocument)
     {
-        return Build(textDocument.FullPath, textDocument.Content);
+        var parser = _parserPrototype.GetUnitUnderTestParser(_settings.LogfileType);
+        if (parser == null)
+        {
+            return UnitUnderTest.Null;
+        }
+
+        return Build(
+            textDocument.FullPath,
+            await parser.GetContentAsync(textDocument.Content));
     }
 
     private UnitUnderTest Build(string fullPath, string content)

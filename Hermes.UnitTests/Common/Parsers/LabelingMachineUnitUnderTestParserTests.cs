@@ -1,3 +1,4 @@
+using Hermes.Common;
 using Hermes.Common.Parsers;
 using Hermes.Models;
 using Hermes.Repositories;
@@ -72,7 +73,7 @@ public class LabelingMachineUnitUnderTestParserTests
         var mockSfcRepository = new Mock<ISfcRepository>();
         mockSfcRepository.Setup(x => x.FindNextCanUsePackage(It.IsAny<string>()))
             .ReturnsAsync(package ?? Package.Null);
-        var sut = new LabelingMachineUnitUnderTestParser(mockSfcRepository.Object, new Settings());
+        var sut = new LabelingMachineUnitUnderTestParser(mockSfcRepository.Object, new Settings(), new HermesLogger());
         return sut;
     }
 }

@@ -16,13 +16,15 @@ public class Startup
         services.AddSingleton(new Mock<ISfcRepository>().Object);
         services.AddTransient<AesEncryptor>();
         services.AddTransient<FileService>();
+        services.AddTransient<FolderWatcherService>();
+        services.AddTransient<GkgUnitUnderTestParser>();
+        services.AddTransient<ILogger, HermesLogger>();
         services.AddTransient<ISettingsRepository, SettingsRepository>();
         services.AddTransient<LabelingMachineUnitUnderTestParser>();
         services.AddTransient<ParserPrototype>();
         services.AddTransient<Settings>();
         services.AddTransient<SfcResponseBuilder>();
+        services.AddTransient<TriUnitUnderTestParser>();
         services.AddTransient<UnitUnderTestBuilder>();
-        services.AddTransient<GkgUnitUnderTestParser>();
-        services.AddTransient<FolderWatcherService>();
     }
 }

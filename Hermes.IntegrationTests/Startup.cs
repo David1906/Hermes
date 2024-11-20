@@ -19,15 +19,17 @@ public class Startup
             x.UseSqlite("DataSource=file::memory:?cache=shared");
         });
         services.AddTransient<AesEncryptor>();
+        services.AddTransient<DefectRepository>();
         services.AddTransient<FileService>();
+        services.AddTransient<GkgUnitUnderTestParser>();
         services.AddTransient<ISettingsRepository, SettingsRepository>();
         services.AddTransient<ISfcRepository, SfcOracleRepository>();
         services.AddTransient<LabelingMachineUnitUnderTestParser>();
         services.AddTransient<ParserPrototype>();
         services.AddTransient<Settings>();
         services.AddTransient<SfcResponseBuilder>();
+        services.AddTransient<TriUnitUnderTestParser>();
         services.AddTransient<UnitUnderTestBuilder>();
-        services.AddTransient<GkgUnitUnderTestParser>();
-        services.AddTransient<DefectRepository>();
+        services.AddTransient<ILogger, HermesLogger>();
     }
 }

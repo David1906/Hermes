@@ -81,6 +81,7 @@ public partial class App
         services.AddSingleton<SettingsConfigModel>();
         services.AddSingleton<SfcResponseBuilder>();
         services.AddSingleton<TokenGenerator>();
+        services.AddSingleton<TriUnitUnderTestParser>();
         services.AddSingleton<UnitUnderTestBuilder>();
         services.AddTransient<SerialPortRx>();
     }
@@ -100,7 +101,7 @@ public partial class App
         services.AddTransient<ServiceProvider>();
         services.AddTransient<SfcSimulatorService>();
         services.AddTransient<StopService>();
-        services.AddTransient<TriUutSenderService>();
+        services.AddTransient<DefaultUutSenderService>();
         services.AddTransient<UutSenderServiceFactory>();
         services.AddTransient<WindowService>();
     }

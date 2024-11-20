@@ -11,18 +11,21 @@ namespace Hermes.Common.Parsers;
 public class LabelingMachineUnitUnderTestParser : IUnitUnderTestParser
 {
     public const string NoPackageAvailableText = "SNoPackageAvailable";
-    private static readonly Regex PkgIdRgx = new(@"^(\s*)(S[\w]*)([\r\n]*)");
+    private static readonly Regex PkgIdRgx = new(@"^(\s*)(S[\w,]*)([\r\n]*)");
     private static readonly Regex SerialNumberRgx = new(@"^\s*([\w]+)$[\r\n]*");
 
     private readonly ISfcRepository _sfcRepository;
     private readonly Settings _settings;
+    private readonly ILogger _logger;
 
     public LabelingMachineUnitUnderTestParser(
         ISfcRepository sfcRepository,
-        Settings settings)
+        Settings settings,
+        ILogger logger)
     {
         this._sfcRepository = sfcRepository;
         this._settings = settings;
+        this._logger = logger;
     }
 
     public List<Defect> ParseDefects(string content)
@@ -63,15 +66,29 @@ public class LabelingMachineUnitUnderTestParser : IUnitUnderTestParser
     public async Task<string> GetContentAsync(string content)
     {
         if (string.IsNullOrEmpty(content)) return content;
-        var package = await this._sfcRepository
-            .FindNextCanUsePackage(
-                _settings.Line.ToUpperString());
+
+        var packageId = await GetPackageIdAsync(content);
+        return PkgIdRgx.Replace(content, m => m.Groups[1].Value + packageId + m.Groups[3].Value);
+    }
+
+    public async Task<string> GetPackageIdAsync(string content)
+    {
         var packageId = NoPackageAvailableText;
-        if (!package.IsNull)
+        try
         {
-            packageId = package.Id;
+            var package = await this._sfcRepository
+                .FindNextCanUsePackage(
+                    _settings.Line.ToUpperString());
+            if (!package.IsNull)
+            {
+                packageId = package.Id;
+            }
+        }
+        catch (Exception e)
+        {
+            _logger.Error(e.Message);
         }
 
-        return PkgIdRgx.Replace(content, m => m.Groups[1].Value + packageId + m.Groups[3].Value);
+        return packageId;
     }
 }

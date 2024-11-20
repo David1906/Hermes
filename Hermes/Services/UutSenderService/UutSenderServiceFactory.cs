@@ -4,7 +4,7 @@ using Hermes.Types;
 namespace Hermes.Services.UutSenderService;
 
 public class UutSenderServiceFactory(
-    TriUutSenderService triUutSenderService,
+    DefaultUutSenderService defaultUutSenderService,
     GkgUutSenderService gkgUutSenderService,
     Settings settings)
 {
@@ -12,6 +12,6 @@ public class UutSenderServiceFactory(
     {
         return settings.Machine is MachineType.ScreenPrinter
             ? gkgUutSenderService
-            : triUutSenderService;
+            : defaultUutSenderService;
     }
 }

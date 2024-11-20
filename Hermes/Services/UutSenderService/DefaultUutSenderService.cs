@@ -7,14 +7,14 @@ using System.Threading.Tasks;
 
 namespace Hermes.Services.UutSenderService;
 
-public class TriUutSenderService : UutSenderService
+public class DefaultUutSenderService : UutSenderService
 {
     private readonly FolderWatcherService _folderWatcherService;
     private readonly ILogger _logger;
     private readonly Settings _settings;
     private readonly UnitUnderTestBuilder _unitUnderTestBuilder;
 
-    public TriUutSenderService(
+    public DefaultUutSenderService(
         FolderWatcherService folderWatcherService,
         ILogger logger,
         ISfcService sfcService,
@@ -64,7 +64,7 @@ public class TriUutSenderService : UutSenderService
 
     private async Task SendUnitUnderTest(TextDocument textDocument)
     {
-        var unitUnderTest = this._unitUnderTestBuilder.Build(textDocument);
+        var unitUnderTest = await this._unitUnderTestBuilder.BuildAsync(textDocument);
         if (unitUnderTest.IsNull)
         {
             this._logger.Error($"Invalid file: {textDocument.FileName}");
