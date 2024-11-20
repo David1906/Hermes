@@ -1,4 +1,6 @@
-﻿using Avalonia.Styling;
+﻿using System;
+using System.Threading.Tasks;
+using Avalonia.Styling;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
@@ -7,6 +9,7 @@ using Hermes.Features.Login;
 using Hermes.Features.Main;
 using Hermes.Language;
 using Hermes.Models;
+using Hermes.Services;
 using Hermes.Types;
 using R3;
 using SukiUI.Controls;
@@ -35,18 +38,21 @@ namespace Hermes.Features
         private readonly Session _session;
         private readonly Settings _settings;
         private readonly SukiTheme _theme;
+        private readonly RestartOnCrashService _restartOnCrashService;
 
         public MainWindowViewModel(
             SplashViewModel splashViewModel,
             ISukiDialogManager dialogManager,
             ISukiToastManager toastManager,
             Session session,
-            Settings settings)
+            Settings settings,
+            RestartOnCrashService restartOnCrashService)
         {
             this._settings = settings;
             this._session = session;
             this._theme = SukiTheme.GetInstance();
             this._theme.ChangeBaseTheme(ThemeVariant.Light);
+            this._restartOnCrashService = restartOnCrashService;
             this.Content = splashViewModel;
             this.IsTitleBarVisible = false;
             this.ToastManager = toastManager;
@@ -151,6 +157,20 @@ namespace Hermes.Features
         private void ShowSettings()
         {
             Messenger.Send(new ShowSettingsMessage());
+        }
+
+        [RelayCommand]
+        private async Task StartRestartOnCrash()
+        {
+            try
+            {
+                await _restartOnCrashService.Start();
+                this.ShowSuccessToast(Resources.msg_restart_on_crash_started);
+            }
+            catch (Exception e)
+            {
+                this.ShowErrorToast(e.Message);
+            }
         }
     }
 }

@@ -860,4 +860,10 @@
     <data name="txt_false" xml:space="preserve">
         <value>Falso</value>
     </data>
+    <data name="txt_start_run_on_crash" xml:space="preserve">
+        <value>Iniciar "run on crash"</value>
+    </data>
+    <data name="msg_restart_on_crash_started" xml:space="preserve">
+        <value>"Restart on crash" iniciado</value>
+    </data>
 </root>

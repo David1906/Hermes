@@ -93,15 +93,16 @@ public partial class App
         services.AddSingleton<PageNavigationService>();
         services.AddSingleton<PagePrototype>();
         services.AddSingleton<ViewLocator>();
+        services.AddTransient<DefaultUutSenderService>();
         services.AddTransient<FileService>();
         services.AddTransient<FileSystemWatcherRx>();
         services.AddTransient<FolderWatcherService>();
         services.AddTransient<GkgUutSenderService>();
         services.AddTransient<ISfcService, SharedFolderSfcService>();
+        services.AddTransient<RestartOnCrashService>();
         services.AddTransient<ServiceProvider>();
         services.AddTransient<SfcSimulatorService>();
         services.AddTransient<StopService>();
-        services.AddTransient<DefaultUutSenderService>();
         services.AddTransient<UutSenderServiceFactory>();
         services.AddTransient<WindowService>();
     }

@@ -34,6 +34,9 @@
         <AvaloniaResource Include="AppData\Assets\splash-background.png">
           <CopyToOutputDirectory>Always</CopyToOutputDirectory>
         </AvaloniaResource>
+        <None Update="AppData\RestartOnCrash.exe">
+          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </None>
     </ItemGroup>
 
     <ItemGroup>

@@ -76,9 +76,18 @@
                       ToolTip.Tip="{x:Static lang:Resources.c_main_window_tooltip_fullscreen}" />
         </MenuItem>
         <MenuItem Header="{x:Static lang:Resources.txt_settings}"
-                  Command="{Binding ShowSettingsCommand}"
                   IsVisible="{Binding AreSettingsVisible}">
-            <MenuItem Header="{x:Static lang:Resources.txt_general_settings}">
+            <MenuItem
+                Header="{x:Static lang:Resources.txt_general_settings}"
+                Command="{Binding ShowSettingsCommand}">
+                <MenuItem.Icon>
+                    <avalonia:MaterialIcon Kind="Settings" />
+                </MenuItem.Icon>
+            </MenuItem>
+
+            <MenuItem
+                Header="{x:Static lang:Resources.txt_start_run_on_crash}"
+                Command="{Binding StartRestartOnCrashCommand}">
                 <MenuItem.Icon>
                     <avalonia:MaterialIcon Kind="Settings" />
                 </MenuItem.Icon>

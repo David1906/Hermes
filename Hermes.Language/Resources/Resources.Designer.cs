@@ -1349,6 +1349,15 @@ namespace Hermes.Language {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to &quot;Restart on crash&quot; started.
+        /// </summary>
+        public static string msg_restart_on_crash_started {
+            get {
+                return ResourceManager.GetString("msg_restart_on_crash_started", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Scan the package&apos;s 2D code.
         /// </summary>
         public static string msg_scan_2d_package {
@@ -2380,6 +2389,15 @@ namespace Hermes.Language {
         public static string txt_start {
             get {
                 return ResourceManager.GetString("txt_start", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Start &quot;run on crash&quot;.
+        /// </summary>
+        public static string txt_start_run_on_crash {
+            get {
+                return ResourceManager.GetString("txt_start_run_on_crash", resourceCulture);
             }
         }
         
