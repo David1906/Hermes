@@ -4,15 +4,16 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:avalonia="clr-namespace:Material.Icons.Avalonia;assembly=Material.Icons.Avalonia"
              xmlns:suki="clr-namespace:SukiUI.Controls;assembly=SukiUI"
-             xmlns:lang="clr-namespace:Hermes.Language;assembly=Hermes.Language"
              xmlns:main="clr-namespace:Hermes.Features.Main"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="Hermes.Features.Main.MainView"
              x:DataType="main:MainViewModel">
+    
     <suki:SukiSideMenu
         ItemsSource="{Binding ShownPages}"
         SelectedItem="{Binding ActivePage}"
         IsMenuExpanded="False">
+        
         <suki:SukiSideMenu.Styles>
             <Style Selector="Image.AppIcon">
                 <Setter Property="Transitions">
@@ -25,6 +26,7 @@
                 </Style>
             </Style>
         </suki:SukiSideMenu.Styles>
+        
         <suki:SukiSideMenu.ItemTemplate>
             <DataTemplate>
                 <suki:SukiSideMenuItem Header="{Binding DisplayName}">
@@ -34,6 +36,7 @@
                 </suki:SukiSideMenuItem>
             </DataTemplate>
         </suki:SukiSideMenu.ItemTemplate>
+        
         <suki:SukiSideMenu.HeaderContent>
             <Image Width="80"
                    Height="80"

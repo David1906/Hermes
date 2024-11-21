@@ -26,14 +26,14 @@ namespace Hermes.Features
         public bool CanClose { get; private set; }
 
         [ObservableProperty] private ThemeVariant? _baseTheme;
-        [ObservableProperty] private string _baseThemeText = "";
-        [ObservableProperty] private string _title = "";
-        [ObservableProperty] private bool _isTitleBarVisible;
-        [ObservableProperty] private bool _isMenuVisible;
+        [ObservableProperty] private ViewModelBase _content;
         [ObservableProperty] private bool _areSettingsVisible;
         [ObservableProperty] private bool _canExit;
         [ObservableProperty] private bool _isLoggedIn;
-        [ObservableProperty] private ViewModelBase _content;
+        [ObservableProperty] private bool _isMenuVisible;
+        [ObservableProperty] private bool _isTitleBarVisible;
+        [ObservableProperty] private string _baseThemeText = "";
+        [ObservableProperty] private string _title = "";
 
         private readonly Session _session;
         private readonly Settings _settings;
@@ -58,7 +58,7 @@ namespace Hermes.Features
             this.ToastManager = toastManager;
             this.DialogManager = dialogManager;
             this.UpdateBaseTheme();
-            this.UpdateTitle(this._session.LoggedUser.Value);
+            this.UpdateTitle();
             this.IsActive = true;
         }
 
@@ -66,10 +66,16 @@ namespace Hermes.Features
         {
             this._session
                 .LoggedUser
-                .Do(this.UpdateTitle)
+                .Do(_ => this.UpdateTitle())
                 .Do(user => this.AreSettingsVisible = user.HasPermission(PermissionType.OpenSettingsConfig))
                 .Do(user => this.CanExit = user.HasPermission(PermissionType.Exit))
                 .Do(user => this.IsLoggedIn = !user.IsNull)
+                .Subscribe()
+                .AddTo(ref Disposables);
+
+            this._session
+                .IsDatabaseOnline
+                .Do(_ => this.UpdateTitle())
                 .Subscribe()
                 .AddTo(ref Disposables);
         }
@@ -92,17 +98,16 @@ namespace Hermes.Features
             this.IsTitleBarVisible = true;
         }
 
-        private void UpdateTitle(User user)
+        private void UpdateTitle()
         {
-            var baseTitle = $"{Resources.txt_hermes} - {_settings.Station} - {_settings.Line}";
-            if (!user.IsNull)
+            var title = $"{Resources.txt_hermes} - {_settings.Station} - {_settings.Line}";
+            if (!this._session.LoggedUser.Value.IsNull)
             {
-                Title = $"{baseTitle}     (👤{user.Name})";
+                title += $"     (👤{this._session.LoggedUser.Value.Name})";
             }
-            else
-            {
-                Title = baseTitle;
-            }
+
+            Title =
+                $"{title} ({(this._session.IsDatabaseOnline.Value ? Resources.txt_online : Resources.txt_offline)})";
         }
 
         [RelayCommand]

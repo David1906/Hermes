@@ -19,6 +19,7 @@ using System;
 using Dotmim.Sync;
 using Dotmim.Sync.MariaDB;
 using Dotmim.Sync.Sqlite;
+using Hermes.Models;
 
 namespace Hermes
 {
@@ -78,7 +79,8 @@ namespace Hermes
                 _provider.GetRequiredService<HermesLocalContext>().Migrate();
 
                 WeakReferenceMessenger.Default.Send(new SplashMessage(Language.Resources.txt_migrating_remote_context));
-                _provider.GetRequiredService<HermesRemoteContext>().Migrate();
+                var session = _provider.GetRequiredService<Session>();
+                session.IsDatabaseOnline.Value = _provider.GetRequiredService<HermesRemoteContext>().Migrate();
                 _provider.GetRequiredService<PagePrototype>().Provider = _provider;
 
                 WeakReferenceMessenger.Default.Send(new SplashMessage(Language.Resources.txt_syncing_database));

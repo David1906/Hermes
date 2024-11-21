@@ -9,7 +9,7 @@ using System;
 
 namespace Hermes.Repositories;
 
-public class UserRemoteRepository(IDbContextFactory<HermesRemoteContext> context) : IReadOnlyUserRepository
+public class UserLocalRepository(IDbContextFactory<HermesLocalContext> context) : IReadOnlyUserRepository
 {
     public async Task<IEnumerable<User>> FindAll(DepartmentType department, UserLevel sessionUserLevel)
     {
@@ -32,40 +32,12 @@ public class UserRemoteRepository(IDbContextFactory<HermesRemoteContext> context
             .ToListAsync();
     }
 
-    private IQueryable<User> FindAllUsersQuery(HermesRemoteContext ctx, DepartmentType department,
+    private IQueryable<User> FindAllUsersQuery(HermesLocalContext ctx, DepartmentType department,
         UserLevel sessionUserLevel)
     {
         return ctx.Users
             .Where(x => department == DepartmentType.Admin ||
                         (x.Department == department && x.Level < sessionUserLevel));
-    }
-
-    public async Task<int> UpdateUser(User user)
-    {
-        try
-        {
-            await using var ctx = await context.CreateDbContextAsync();
-            var entity = await ctx.Users.FirstOrDefaultAsync(x => x.EmployeeId == user.EmployeeId);
-            if (entity == null)
-            {
-                return 0;
-            }
-
-            ctx.Users.Entry(entity).CurrentValues.SetValues(user);
-            await ctx.SaveChangesAsync();
-            return 1;
-        }
-        catch (Exception)
-        {
-            return 0;
-        }
-    }
-
-    public void Delete(User user)
-    {
-        using var ctx = context.CreateDbContext();
-        ctx.Users.Remove(user);
-        ctx.SaveChanges();
     }
 
     public async Task<User> FindUser(string userName, string password)
@@ -91,12 +63,5 @@ public class UserRemoteRepository(IDbContextFactory<HermesRemoteContext> context
         {
             return false;
         }
-    }
-
-    public async Task AddAndSaveAsync(User user)
-    {
-        await using var ctx = await context.CreateDbContextAsync();
-        ctx.Users.Add(user);
-        await ctx.SaveChangesAsync();
     }
 }

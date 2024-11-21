@@ -33,7 +33,7 @@ public class HermesRemoteContext : DbContext
         base.OnConfiguring(optionsBuilder);
     }
 
-    public void Migrate()
+    public bool Migrate()
     {
         try
         {
@@ -41,10 +41,13 @@ public class HermesRemoteContext : DbContext
             {
                 Database.Migrate();
             }
+
+            return true;
         }
         catch (Exception e)
         {
             Console.WriteLine(e);
+            return false;
         }
     }
 

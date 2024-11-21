@@ -58,6 +58,7 @@ public partial class App
         services.AddSingleton<FeaturePermissionRemoteRepository>();
         services.AddSingleton<ISettingsRepository, SettingsRepository>();
         services.AddSingleton<SerialScanner>();
+        services.AddSingleton<UserLocalRepository>();
         services.AddSingleton<UserRemoteRepository>();
         services.AddSingleton<UserRepositoryProxy>();
         services.AddTransient<HermesRemoteContext>();

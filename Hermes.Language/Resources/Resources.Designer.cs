@@ -2141,11 +2141,29 @@ namespace Hermes.Language {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Offline.
+        /// </summary>
+        public static string txt_offline {
+            get {
+                return ResourceManager.GetString("txt_offline", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Ok.
         /// </summary>
         public static string txt_ok {
             get {
                 return ResourceManager.GetString("txt_ok", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Online.
+        /// </summary>
+        public static string txt_online {
+            get {
+                return ResourceManager.GetString("txt_online", resourceCulture);
             }
         }
         

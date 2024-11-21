@@ -12,6 +12,7 @@ public partial class
 {
     public ReactiveProperty<StateType> UutProcessorState { get; } = new(StateType.Stopped);
     public ReactiveProperty<User> LoggedUser { get; } = new(User.Null);
+    public ReactiveProperty<bool> IsDatabaseOnline { get; } = new(true);
 
     [ObservableProperty] private string _path = string.Empty;
     public Stop Stop { get; set; } = Stop.Null;
