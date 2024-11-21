@@ -12,7 +12,20 @@ namespace Hermes.AppData.Migrations.Local
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "SfcResponses",
+                name: "feature_permissions",
+                columns: table => new
+                {
+                    Permission = table.Column<int>(type: "INTEGER", nullable: false),
+                    Department = table.Column<int>(type: "INTEGER", nullable: false),
+                    Level = table.Column<int>(type: "INTEGER", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_feature_permissions", x => new { x.Permission, x.Department, x.Level });
+                });
+
+            migrationBuilder.CreateTable(
+                name: "sfc_responses",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "INTEGER", nullable: false)
@@ -23,11 +36,11 @@ namespace Hermes.AppData.Migrations.Local
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_SfcResponses", x => x.Id);
+                    table.PrimaryKey("PK_sfc_responses", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
-                name: "Stops",
+                name: "stops",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "INTEGER", nullable: false)
@@ -35,15 +48,16 @@ namespace Hermes.AppData.Migrations.Local
                     Type = table.Column<int>(type: "INTEGER", nullable: false),
                     IsRestored = table.Column<bool>(type: "INTEGER", nullable: false),
                     Details = table.Column<string>(type: "TEXT", nullable: false),
-                    Actions = table.Column<string>(type: "TEXT", nullable: false)
+                    Actions = table.Column<string>(type: "TEXT", nullable: false),
+                    ClosedAt = table.Column<DateTime>(type: "TEXT", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Stops", x => x.Id);
+                    table.PrimaryKey("PK_stops", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
-                name: "Users",
+                name: "users",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "INTEGER", nullable: false)
@@ -56,11 +70,11 @@ namespace Hermes.AppData.Migrations.Local
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Users", x => x.Id);
+                    table.PrimaryKey("PK_users", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
-                name: "UnitsUnderTest",
+                name: "units_under_test",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "INTEGER", nullable: false)
@@ -74,21 +88,21 @@ namespace Hermes.AppData.Migrations.Local
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_UnitsUnderTest", x => x.Id);
+                    table.PrimaryKey("PK_units_under_test", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_UnitsUnderTest_SfcResponses_SfcResponseId",
+                        name: "FK_units_under_test_sfc_responses_SfcResponseId",
                         column: x => x.SfcResponseId,
-                        principalTable: "SfcResponses",
+                        principalTable: "sfc_responses",
                         principalColumn: "Id");
                     table.ForeignKey(
-                        name: "FK_UnitsUnderTest_Stops_StopId",
+                        name: "FK_units_under_test_stops_StopId",
                         column: x => x.StopId,
-                        principalTable: "Stops",
+                        principalTable: "stops",
                         principalColumn: "Id");
                 });
 
             migrationBuilder.CreateTable(
-                name: "StopUser",
+                name: "user_stop",
                 columns: table => new
                 {
                     StopsId = table.Column<int>(type: "INTEGER", nullable: false),
@@ -96,23 +110,23 @@ namespace Hermes.AppData.Migrations.Local
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_StopUser", x => new { x.StopsId, x.UsersId });
+                    table.PrimaryKey("PK_user_stop", x => new { x.StopsId, x.UsersId });
                     table.ForeignKey(
-                        name: "FK_StopUser_Stops_StopsId",
+                        name: "FK_user_stop_stops_StopsId",
                         column: x => x.StopsId,
-                        principalTable: "Stops",
+                        principalTable: "stops",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_StopUser_Users_UsersId",
+                        name: "FK_user_stop_users_UsersId",
                         column: x => x.UsersId,
-                        principalTable: "Users",
+                        principalTable: "users",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
-                name: "Defects",
+                name: "defects",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "INTEGER", nullable: false)
@@ -125,66 +139,69 @@ namespace Hermes.AppData.Migrations.Local
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Defects", x => x.Id);
+                    table.PrimaryKey("PK_defects", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Defects_Stops_StopId",
+                        name: "FK_defects_stops_StopId",
                         column: x => x.StopId,
-                        principalTable: "Stops",
+                        principalTable: "stops",
                         principalColumn: "Id");
                     table.ForeignKey(
-                        name: "FK_Defects_UnitsUnderTest_UnitUnderTestId",
+                        name: "FK_defects_units_under_test_UnitUnderTestId",
                         column: x => x.UnitUnderTestId,
-                        principalTable: "UnitsUnderTest",
+                        principalTable: "units_under_test",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Defects_StopId",
-                table: "Defects",
+                name: "IX_defects_StopId",
+                table: "defects",
                 column: "StopId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Defects_UnitUnderTestId",
-                table: "Defects",
+                name: "IX_defects_UnitUnderTestId",
+                table: "defects",
                 column: "UnitUnderTestId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_StopUser_UsersId",
-                table: "StopUser",
-                column: "UsersId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_UnitsUnderTest_SfcResponseId",
-                table: "UnitsUnderTest",
+                name: "IX_units_under_test_SfcResponseId",
+                table: "units_under_test",
                 column: "SfcResponseId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_UnitsUnderTest_StopId",
-                table: "UnitsUnderTest",
+                name: "IX_units_under_test_StopId",
+                table: "units_under_test",
                 column: "StopId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_user_stop_UsersId",
+                table: "user_stop",
+                column: "UsersId");
         }
 
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Defects");
+                name: "defects");
 
             migrationBuilder.DropTable(
-                name: "StopUser");
+                name: "feature_permissions");
 
             migrationBuilder.DropTable(
-                name: "UnitsUnderTest");
+                name: "user_stop");
 
             migrationBuilder.DropTable(
-                name: "Users");
+                name: "units_under_test");
 
             migrationBuilder.DropTable(
-                name: "SfcResponses");
+                name: "users");
 
             migrationBuilder.DropTable(
-                name: "Stops");
+                name: "sfc_responses");
+
+            migrationBuilder.DropTable(
+                name: "stops");
         }
     }
 }

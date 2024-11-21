@@ -16,6 +16,9 @@ using Microsoft.Extensions.DependencyInjection;
 using System.Diagnostics;
 using System.Threading.Tasks;
 using System;
+using Dotmim.Sync;
+using Dotmim.Sync.MariaDB;
+using Dotmim.Sync.Sqlite;
 
 namespace Hermes
 {
@@ -66,22 +69,33 @@ namespace Hermes
             return IntPtr.Zero;
         }
 
-        private Task InitializeMainView()
+        private async Task InitializeMainView()
         {
-            if (this._mainWindow is null) return Task.CompletedTask;
+            if (this._mainWindow is null) return;
+            try
+            {
+                WeakReferenceMessenger.Default.Send(new SplashMessage(Language.Resources.txt_migrating_local_context));
+                _provider.GetRequiredService<HermesLocalContext>().Migrate();
 
-            WeakReferenceMessenger.Default.Send(new SplashMessage(Language.Resources.txt_migrating_local_context));
-            _provider.GetRequiredService<HermesLocalContext>().Migrate();
-            WeakReferenceMessenger.Default.Send(new SplashMessage(Language.Resources.txt_migrating_remote_context));
-            _provider.GetRequiredService<HermesRemoteContext>().Migrate();
-            _provider.GetRequiredService<PagePrototype>().Provider = _provider;
+                WeakReferenceMessenger.Default.Send(new SplashMessage(Language.Resources.txt_migrating_remote_context));
+                _provider.GetRequiredService<HermesRemoteContext>().Migrate();
+                _provider.GetRequiredService<PagePrototype>().Provider = _provider;
+
+                WeakReferenceMessenger.Default.Send(new SplashMessage(Language.Resources.txt_syncing_database));
+                var dataBaseSyncService = _provider.GetRequiredService<DataBaseSyncService>();
+                await dataBaseSyncService.Sync(progress =>
+                    WeakReferenceMessenger.Default.Send(new SplashMessage(progress)));
+            }
+            catch (Exception e)
+            {
+                this._logger?.Error($"{e.Message}");
+            }
 
             Dispatcher.UIThread.Invoke(() =>
             {
                 this._mainWindow.Content = _provider.GetRequiredService<MainViewModel>();
             });
             WeakReferenceMessenger.Default.Send(new SplashClosedMessage());
-            return Task.CompletedTask;
         }
 
         public static void Restart()

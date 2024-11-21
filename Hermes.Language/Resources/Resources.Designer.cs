@@ -2438,6 +2438,15 @@ namespace Hermes.Language {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Syncing database.
+        /// </summary>
+        public static string txt_syncing_database {
+            get {
+                return ResourceManager.GetString("txt_syncing_database", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Test status.
         /// </summary>
         public static string txt_test_status {

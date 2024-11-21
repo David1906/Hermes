@@ -22,23 +22,6 @@ namespace Hermes.AppData.Migrations.Remote
 
             MySqlModelBuilderExtensions.AutoIncrementColumns(modelBuilder);
 
-            modelBuilder.Entity("Hermes.Models.DboUpdate", b =>
-                {
-                    b.Property<string>("Name")
-                        .HasColumnType("varchar(255)");
-
-                    b.Property<string>("Description")
-                        .IsRequired()
-                        .HasColumnType("longtext");
-
-                    b.Property<DateTime>("LastModified")
-                        .HasColumnType("datetime(6)");
-
-                    b.HasKey("Name");
-
-                    b.ToTable("DboUpdates", (string)null);
-                });
-
             modelBuilder.Entity("Hermes.Models.Defect", b =>
                 {
                     b.Property<int>("Id")
@@ -86,7 +69,7 @@ namespace Hermes.AppData.Migrations.Remote
 
                     b.HasKey("Permission", "Department", "Level");
 
-                    b.ToTable("FeaturePermissions", (string)null);
+                    b.ToTable("feature_permissions", (string)null);
                 });
 
             modelBuilder.Entity("Hermes.Models.Stop", b =>
@@ -150,7 +133,7 @@ namespace Hermes.AppData.Migrations.Remote
 
                     b.HasKey("Id");
 
-                    b.ToTable("Users", (string)null);
+                    b.ToTable("users", (string)null);
                 });
 
             modelBuilder.Entity("StopUser", b =>

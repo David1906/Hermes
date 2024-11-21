@@ -875,4 +875,7 @@
     <data name="msg_restart_on_crash_started" xml:space="preserve">
         <value>"Restart on crash" started</value>
     </data>
+    <data name="txt_syncing_database" xml:space="preserve">
+        <value>Syncing database</value>
+    </data>
 </root>

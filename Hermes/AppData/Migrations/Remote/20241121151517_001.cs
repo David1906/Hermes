@@ -7,24 +7,25 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace Hermes.AppData.Migrations.Remote
 {
     /// <inheritdoc />
-    public partial class _002 : Migration
+    public partial class _001 : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.AlterDatabase()
+                .Annotation("MySql:CharSet", "utf8mb4");
+
             migrationBuilder.CreateTable(
-                name: "DboUpdates",
+                name: "feature_permissions",
                 columns: table => new
                 {
-                    Name = table.Column<string>(type: "varchar(255)", nullable: false)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    LastModified = table.Column<DateTime>(type: "datetime(6)", nullable: false),
-                    Description = table.Column<string>(type: "longtext", nullable: false)
-                        .Annotation("MySql:CharSet", "utf8mb4")
+                    Permission = table.Column<int>(type: "int", nullable: false),
+                    Department = table.Column<int>(type: "int", nullable: false),
+                    Level = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_DboUpdates", x => x.Name);
+                    table.PrimaryKey("PK_feature_permissions", x => new { x.Permission, x.Department, x.Level });
                 })
                 .Annotation("MySql:CharSet", "utf8mb4");
 
@@ -45,6 +46,27 @@ namespace Hermes.AppData.Migrations.Remote
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Stop", x => x.Id);
+                })
+                .Annotation("MySql:CharSet", "utf8mb4");
+
+            migrationBuilder.CreateTable(
+                name: "users",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
+                    EmployeeId = table.Column<string>(type: "varchar(64)", maxLength: 64, nullable: false)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    Name = table.Column<string>(type: "varchar(250)", maxLength: 250, nullable: false)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    Department = table.Column<int>(type: "int", nullable: false),
+                    Level = table.Column<int>(type: "int", nullable: false),
+                    Password = table.Column<string>(type: "varchar(64)", maxLength: 64, nullable: false)
+                        .Annotation("MySql:CharSet", "utf8mb4")
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_users", x => x.Id);
                 })
                 .Annotation("MySql:CharSet", "utf8mb4");
 
@@ -90,9 +112,9 @@ namespace Hermes.AppData.Migrations.Remote
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_StopUser_Users_UsersId",
+                        name: "FK_StopUser_users_UsersId",
                         column: x => x.UsersId,
-                        principalTable: "Users",
+                        principalTable: "users",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 })
@@ -107,28 +129,25 @@ namespace Hermes.AppData.Migrations.Remote
                 name: "IX_StopUser_UsersId",
                 table: "StopUser",
                 column: "UsersId");
-            
-            migrationBuilder.Sql("CREATE TRIGGER `update_dbupdates_on_user_insert` AFTER INSERT ON `users`\n FOR EACH ROW INSERT INTO dboupdates (Name, LastModified, Description)\n    VALUES ('users', NOW(), 'Last users table update or insert')\n    ON DUPLICATE KEY UPDATE LastModified = NOW()");
-            migrationBuilder.Sql("CREATE TRIGGER `update_dbupdates_on_user_update` AFTER UPDATE ON `users`\n FOR EACH ROW INSERT INTO dboupdates (Name, LastModified, Description)\n    VALUES ('users', NOW(), 'Last users table update or insert')\n    ON DUPLICATE KEY UPDATE LastModified = NOW()");
         }
 
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "DboUpdates");
+                name: "Defect");
 
             migrationBuilder.DropTable(
-                name: "Defect");
+                name: "feature_permissions");
 
             migrationBuilder.DropTable(
                 name: "StopUser");
 
             migrationBuilder.DropTable(
                 name: "Stop");
-            
-            migrationBuilder.Sql("DROP TRIGGER `update_dbupdates_on_user_insert`");
-            migrationBuilder.Sql("DROP TRIGGER `update_dbupdates_on_user_update`");
+
+            migrationBuilder.DropTable(
+                name: "users");
         }
     }
 }

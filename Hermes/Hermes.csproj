@@ -52,6 +52,9 @@
         <PackageReference Include="ConfigFactory.Avalonia" Version="0.4.2"/>
         <PackageReference Include="ConfigFactory.Core" Version="0.4.2"/>
         <PackageReference Include="Dapper" Version="2.1.35"/>
+        <PackageReference Include="Dotmim.Sync.Core" Version="1.2.0" />
+        <PackageReference Include="Dotmim.Sync.MariaDB" Version="1.2.0" />
+        <PackageReference Include="Dotmim.Sync.Sqlite" Version="1.2.0" />
         <PackageReference Include="Material.Icons.Avalonia" Version="2.1.10"/>
         <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="8.0.8">
             <PrivateAssets>all</PrivateAssets>
@@ -124,5 +127,7 @@
 
     <ItemGroup>
       <Folder Include="AppData\Migrations\" />
+      <Folder Include="AppData\Migrations\Local\" />
+      <Folder Include="AppData\Migrations\Remote\" />
     </ItemGroup>
 </Project>

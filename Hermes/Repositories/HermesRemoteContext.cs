@@ -14,10 +14,9 @@ public class HermesRemoteContext : DbContext
     private const string Password = "AmazingPassword";
     private string _server = "localhost";
 
-    private string ConnectionString => $"Server={_server};Database={DatabaseName};user={User};password={Password}";
+    public string ConnectionString => $"Server={_server};Database={DatabaseName};user={User};password={Password}";
     public DbSet<User> Users { get; set; }
     public DbSet<FeaturePermission> FeaturePermissions { get; set; }
-    public DbSet<DboUpdate> DboUpdates { get; set; }
 
     public HermesRemoteContext(Settings settings)
     {
@@ -51,8 +50,7 @@ public class HermesRemoteContext : DbContext
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        modelBuilder.Entity<User>().ToTable("Users");
-        modelBuilder.Entity<FeaturePermission>().ToTable("FeaturePermissions");
-        modelBuilder.Entity<DboUpdate>().ToTable("DboUpdates");
+        modelBuilder.Entity<User>().ToTable("users");
+        modelBuilder.Entity<FeaturePermission>().ToTable("feature_permissions");
     }
 }

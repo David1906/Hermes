@@ -93,6 +93,7 @@ public partial class App
         services.AddSingleton<PageNavigationService>();
         services.AddSingleton<PagePrototype>();
         services.AddSingleton<ViewLocator>();
+        services.AddTransient<DataBaseSyncService>();
         services.AddTransient<DefaultUutSenderService>();
         services.AddTransient<FileService>();
         services.AddTransient<FileSystemWatcherRx>();

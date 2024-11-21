@@ -48,7 +48,23 @@ namespace Hermes.AppData.Migrations.Local
 
                     b.HasIndex("UnitUnderTestId");
 
-                    b.ToTable("Defects", (string)null);
+                    b.ToTable("defects", (string)null);
+                });
+
+            modelBuilder.Entity("Hermes.Models.FeaturePermission", b =>
+                {
+                    b.Property<int>("Permission")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("Department")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("Level")
+                        .HasColumnType("INTEGER");
+
+                    b.HasKey("Permission", "Department", "Level");
+
+                    b.ToTable("feature_permissions", (string)null);
                 });
 
             modelBuilder.Entity("Hermes.Models.SfcResponse", b =>
@@ -72,7 +88,7 @@ namespace Hermes.AppData.Migrations.Local
 
                     b.HasKey("Id");
 
-                    b.ToTable("SfcResponses", (string)null);
+                    b.ToTable("sfc_responses", (string)null);
                 });
 
             modelBuilder.Entity("Hermes.Models.Stop", b =>
@@ -100,7 +116,7 @@ namespace Hermes.AppData.Migrations.Local
 
                     b.HasKey("Id");
 
-                    b.ToTable("Stops", (string)null);
+                    b.ToTable("stops", (string)null);
                 });
 
             modelBuilder.Entity("Hermes.Models.UnitUnderTest", b =>
@@ -137,7 +153,7 @@ namespace Hermes.AppData.Migrations.Local
 
                     b.HasIndex("StopId");
 
-                    b.ToTable("UnitsUnderTest", (string)null);
+                    b.ToTable("units_under_test", (string)null);
                 });
 
             modelBuilder.Entity("Hermes.Models.User", b =>
@@ -169,7 +185,7 @@ namespace Hermes.AppData.Migrations.Local
 
                     b.HasKey("Id");
 
-                    b.ToTable("Users", (string)null);
+                    b.ToTable("users", (string)null);
                 });
 
             modelBuilder.Entity("StopUser", b =>
@@ -184,7 +200,7 @@ namespace Hermes.AppData.Migrations.Local
 
                     b.HasIndex("UsersId");
 
-                    b.ToTable("StopUser");
+                    b.ToTable("user_stop", (string)null);
                 });
 
             modelBuilder.Entity("Hermes.Models.Defect", b =>
