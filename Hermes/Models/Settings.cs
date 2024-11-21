@@ -42,6 +42,7 @@ public class Settings
     public string CriticalLocations { get; set; } = "U1";
     public string UpdateManagerUrl { get; set; } = @"http://10.12.204.48/hermes/download";
     public string ScannerFilter { get; set; } = @"1A\w+$";
+    public bool AutoSyncDatabase { get; set; } = true;
 
     #endregion
 

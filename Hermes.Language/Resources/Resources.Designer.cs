@@ -150,6 +150,15 @@ namespace Hermes.Language {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Sync the database every hour.
+        /// </summary>
+        public static string c_settings_description_auto_sync_database {
+            get {
+                return ResourceManager.GetString("c_settings_description_auto_sync_database", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Critical locations comma separated.
         /// </summary>
         public static string c_settings_description_critical_locations {
@@ -283,6 +292,15 @@ namespace Hermes.Language {
         public static string c_settings_header_additional_ok_sfc_response {
             get {
                 return ResourceManager.GetString("c_settings_header_additional_ok_sfc_response", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Aumatic database sync.
+        /// </summary>
+        public static string c_settings_header_auto_sync_database {
+            get {
+                return ResourceManager.GetString("c_settings_header_auto_sync_database", resourceCulture);
             }
         }
         
@@ -2452,6 +2470,15 @@ namespace Hermes.Language {
         public static string txt_success {
             get {
                 return ResourceManager.GetString("txt_success", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sync database.
+        /// </summary>
+        public static string txt_sync_database {
+            get {
+                return ResourceManager.GetString("txt_sync_database", resourceCulture);
             }
         }
         

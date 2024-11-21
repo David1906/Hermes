@@ -875,4 +875,13 @@
     <data name="txt_online" xml:space="preserve">
         <value>Online</value>
     </data>
+    <data name="txt_sync_database" xml:space="preserve">
+        <value>Sincronizar base de datos</value>
+    </data>
+    <data name="c_settings_header_auto_sync_database" xml:space="preserve">
+        <value>Sincronización automática de la base de datos</value>
+    </data>
+    <data name="c_settings_description_auto_sync_database" xml:space="preserve">
+        <value>Sincronizar la base de datos automáticamente cada hora</value>
+    </data>
 </root>

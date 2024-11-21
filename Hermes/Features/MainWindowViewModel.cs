@@ -39,6 +39,7 @@ namespace Hermes.Features
         private readonly Settings _settings;
         private readonly SukiTheme _theme;
         private readonly RestartOnCrashService _restartOnCrashService;
+        private readonly DataBaseSyncService _dataBaseSyncService;
 
         public MainWindowViewModel(
             SplashViewModel splashViewModel,
@@ -46,13 +47,15 @@ namespace Hermes.Features
             ISukiToastManager toastManager,
             Session session,
             Settings settings,
-            RestartOnCrashService restartOnCrashService)
+            RestartOnCrashService restartOnCrashService,
+            DataBaseSyncService dataBaseSyncService)
         {
             this._settings = settings;
             this._session = session;
             this._theme = SukiTheme.GetInstance();
             this._theme.ChangeBaseTheme(ThemeVariant.Light);
             this._restartOnCrashService = restartOnCrashService;
+            this._dataBaseSyncService = dataBaseSyncService;
             this.Content = splashViewModel;
             this.IsTitleBarVisible = false;
             this.ToastManager = toastManager;
@@ -78,6 +81,14 @@ namespace Hermes.Features
                 .Do(_ => this.UpdateTitle())
                 .Subscribe()
                 .AddTo(ref Disposables);
+
+            if (_settings.AutoSyncDatabase)
+            {
+                Observable.Interval(TimeSpan.FromHours(1))
+                    .SelectAwait(async (_, __) => await this.SyncDb())
+                    .Subscribe()
+                    .AddTo(ref Disposables);
+            }
         }
 
         protected override void OnActivated()
@@ -175,6 +186,39 @@ namespace Hermes.Features
             catch (Exception e)
             {
                 this.ShowErrorToast(e.Message);
+            }
+        }
+
+        private bool _isSyncing;
+
+        [RelayCommand]
+        private async Task<bool> SyncDb()
+        {
+            if (_isSyncing) return false;
+
+            try
+            {
+                _isSyncing = true;
+                var toast = ToastManager.CreateToast()
+                    .WithTitle(Resources.txt_syncing_database)
+                    .WithLoadingState(true)
+                    .WithContent(Resources.txt_loading)
+                    .Queue();
+                await _dataBaseSyncService.Sync(progress =>
+                    toast.Content = progress);
+                await Task.Delay(TimeSpan.FromSeconds(2));
+                ToastManager.Dismiss(toast);
+                this.ShowSuccessToast(Resources.txt_sync_database);
+                return true;
+            }
+            catch (Exception e)
+            {
+                this.ShowErrorToast(e.Message);
+                return false;
+            }
+            finally
+            {
+                _isSyncing = false;
             }
         }
     }

@@ -57,6 +57,14 @@ public partial class SettingsConfigModel(
     private string _updateManagerUrl = @"10.12.204.48/hermes/download";
 
     [ObservableProperty]
+    [property: Config(
+        Header = "c_settings_header_auto_sync_database",
+        Description = "c_settings_description_auto_sync_database",
+        Category = "c_settings_category_general",
+        Group = "c_settings_group_common")]
+    private bool _autoSyncDatabase = true;
+
+    [ObservableProperty]
     [property: DropdownConfig(RuntimeItemsSourceMethodName = "LineType")]
     [property: Config(
         Header = "c_settings_header_line_name",

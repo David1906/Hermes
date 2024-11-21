@@ -63,6 +63,12 @@
                     <avalonia:MaterialIcon Kind="CloseCircleOutline" />
                 </MenuItem.Icon>
             </MenuItem>
+            <MenuItem Command="{Binding SyncDbCommand}"
+                      Header="{x:Static lang:Resources.txt_sync_database}">
+                <MenuItem.Icon>
+                    <avalonia:MaterialIcon Kind="Sync" />
+                </MenuItem.Icon>
+            </MenuItem>
         </MenuItem>
         <MenuItem Header="{x:Static lang:Resources.txt_view}">
             <MenuItem Command="{Binding ToggleBaseThemeCommand}"
