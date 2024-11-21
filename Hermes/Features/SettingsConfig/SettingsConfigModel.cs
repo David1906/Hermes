@@ -372,6 +372,7 @@ public partial class SettingsConfigModel(
                 Machine = MachineType.Labeling;
                 SendRepairFile = false;
                 AutostartUutProcessor = true;
+                AdditionalOkSfcResponse = "GO-S_INPUT_B";
                 break;
             case StationType.SpiBottom:
             case StationType.SpiTop:

@@ -94,6 +94,7 @@ public partial class PackageScannerViewModel : ViewModelBase
             }
 
             this.ShowSuccessToast(Resources.msg_package_added_to_hermes);
+            this.PackageScanned = this.Package.NormalizedId;
         }
         catch (Exception e)
         {
