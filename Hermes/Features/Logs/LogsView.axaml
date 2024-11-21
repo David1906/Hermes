@@ -14,7 +14,7 @@
             <local:UnitUnderTestLogView DataContext="{Binding UnitUnderTestLogViewModel}" />
         </TabItem>
 
-        <TabItem Header="{x:Static lang:Resources.txt_stop}">
+        <TabItem Header="{x:Static lang:Resources.txt_stops}">
             <local:StopLogView DataContext="{Binding StopLogViewModel}" />
         </TabItem>
     </TabControl>

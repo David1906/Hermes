@@ -893,4 +893,7 @@
     <data name="c_settings_description_auto_sync_database" xml:space="preserve">
         <value>Sync the database every hour</value>
     </data>
+    <data name="txt_stops" xml:space="preserve">
+        <value>Stops</value>
+    </data>
 </root>

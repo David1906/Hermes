@@ -2465,6 +2465,15 @@ namespace Hermes.Language {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Stops.
+        /// </summary>
+        public static string txt_stops {
+            get {
+                return ResourceManager.GetString("txt_stops", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Success.
         /// </summary>
         public static string txt_success {

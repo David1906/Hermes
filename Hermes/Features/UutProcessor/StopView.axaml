@@ -32,7 +32,7 @@
         <Grid
             Grid.Row="0"
             Grid.Column="1"
-            MaxWidth="950"
+            MaxWidth="700"
             VerticalAlignment="Center"
             RowDefinitions="*,*">
 
@@ -43,15 +43,14 @@
                     Background="{StaticResource DarkRedColor}"
                     Padding="20">
 
-                <Grid
-                    RowDefinitions="*, Auto">
+                <Grid RowDefinitions="*, Auto">
 
                     <ScrollViewer>
                         <TextBlock
                             TextAlignment="Center"
                             TextWrapping="Wrap"
                             VerticalAlignment="Center"
-                            HorizontalAlignment="Center"
+                            HorizontalAlignment="Stretch"
                             Classes="h1"
                             Foreground="White"
                             Text="{Binding Stop.Message}" />
@@ -59,7 +58,7 @@
 
                     <StackPanel
                         Grid.Row="1"
-                        HorizontalAlignment="Center"
+                        HorizontalAlignment="Stretch"
                         MaxWidth="{StaticResource StopWindowMaxWidth }"
                         Margin="0"
                         Spacing="{StaticResource DefaultSpacing}">
@@ -81,7 +80,8 @@
 
                             <TextBlock
                                 TextWrapping="Wrap"
-                                TextAlignment="Center"
+                                TextAlignment="Left"
+                                HorizontalAlignment="Left"
                                 MaxWidth="700"
                                 Classes="h4"
                                 Margin="0"
