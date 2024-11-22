@@ -4,10 +4,10 @@ using Hermes.Cipher.Types;
 using Hermes.Language;
 using Hermes.Models;
 using Hermes.Repositories;
-using Hermes.Types;
 using Material.Icons;
 using R3;
 using System.Threading.Tasks;
+using System;
 
 namespace Hermes.Features.Login;
 
@@ -41,6 +41,14 @@ public partial class LoginViewModel : PageBase
             .LoggedUser
             .Do(user => this.IsLoggedIn = !user.IsNull)
             .Do(user => this.User = user)
+            .Subscribe()
+            .AddTo(ref Disposables);
+
+        this._session
+            .LoggedUser
+            .Where(user => !user.IsNull)
+            .Delay(TimeSpan.FromHours(1))
+            .Do(_ => this.Logout())
             .Subscribe()
             .AddTo(ref Disposables);
     }
