@@ -128,6 +128,14 @@ public class FileService
             fileNameWithoutExtension + _settings.InputFileExtension.GetDescription());
         await WriteAllTextAsync(path, content);
     }
+    
+    public virtual async Task WriteResponseToInputPathAsync(string fileNameWithoutExtension, string content)
+    {
+        var fn = GetFileNameWithoutCurrentDate(fileNameWithoutExtension);
+        var path = Path.Combine(this._settings.InputPath,
+            Path.GetFileNameWithoutExtension(fn) + _settings.SfcResponseExtension.GetDescription());
+        await WriteAllTextAsync(path, content);
+    }
 
     public virtual async Task WriteSfcResponseAsync(string fileNameWithoutExtension, string content)
     {

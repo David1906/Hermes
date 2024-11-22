@@ -44,7 +44,7 @@ public partial class UutProcessorViewModel : PageBase
         Settings settings,
         StopService stopService,
         FileService fileService,
-        UutSenderServiceFactory uutSenderServiceFactory,
+        UutSenderServicePrototype uutSenderServicePrototype,
         UnitUnderTestRepository unitUnderTestRepository,
         ScannerViewModel scannerViewModel,
         DummyViewModel dummyViewModel)
@@ -60,7 +60,7 @@ public partial class UutProcessorViewModel : PageBase
         this._session = session;
         this._stopService = stopService;
         this._unitUnderTestRepository = unitUnderTestRepository;
-        this._uutSenderService = uutSenderServiceFactory.Build();
+        this._uutSenderService = uutSenderServicePrototype.Build();
         this.IsScannerVisible = settings.Machine == MachineType.ScreenPrinter;
         this.IsEnterDummyVisible = settings.Machine == MachineType.ScreenPrinter;
         this.CurrentUnitUnderTest = this._uutSenderService

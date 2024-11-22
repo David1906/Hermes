@@ -327,8 +327,8 @@ public partial class SettingsConfigModel(
                 break;
             case MachineType.Labeling:
                 LogfileType = LogfileType.LabelingMachineDefault;
-                SfcResponseExtension = FileExtension.Log;
-                InputFileExtension = FileExtension.Res;
+                SfcResponseExtension = FileExtension.Res;
+                InputFileExtension = FileExtension.Txt;
                 SendRepairFile = true;
                 EnableMachineStop = true;
                 EnableRuleThreeFiveTen = false;

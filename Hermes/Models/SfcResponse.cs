@@ -1,8 +1,8 @@
-using System;
 using Hermes.Common.Extensions;
 using Hermes.Types;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
+using System.IO;
 using System.Text.RegularExpressions;
 
 namespace Hermes.Models;
@@ -28,6 +28,7 @@ public class SfcResponse
     public SfcResponseType Type { get; init; }
     [MaxLength(3000)] public string Content { get; init; } = "";
     [MaxLength(512)] public string FullPath { get; set; } = "";
+    [NotMapped] public string FileName => Path.GetFileName(this.FullPath);
 
     [NotMapped]
     public string Details =>

@@ -62,7 +62,7 @@ public class DefaultUutSenderService : UutSenderService
             .AddTo(ref Disposables);
     }
 
-    private async Task SendUnitUnderTest(TextDocument textDocument)
+    protected virtual async Task SendUnitUnderTest(TextDocument textDocument)
     {
         var unitUnderTest = await this._unitUnderTestBuilder.BuildAsync(textDocument);
         if (unitUnderTest.IsNull)

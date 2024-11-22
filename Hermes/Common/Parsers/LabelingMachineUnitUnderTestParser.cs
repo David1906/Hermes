@@ -12,7 +12,7 @@ public class LabelingMachineUnitUnderTestParser : IUnitUnderTestParser
 {
     public const string NoPackageAvailableText = "SNoPackageAvailable";
     private static readonly Regex PkgIdRgx = new(@"^(\s*)(S[\w,]*)([\r\n]*)");
-    private static readonly Regex SerialNumberRgx = new(@"^\s*([\w]+)$[\r\n]*");
+    private static readonly Regex SerialNumberRgx = new(@"^\s*([\w]+)[\r\n,]*");
 
     private readonly ISfcRepository _sfcRepository;
     private readonly Settings _settings;

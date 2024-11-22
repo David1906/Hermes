@@ -101,11 +101,12 @@ public partial class App
         services.AddTransient<FolderWatcherService>();
         services.AddTransient<GkgUutSenderService>();
         services.AddTransient<ISfcService, SharedFolderSfcService>();
+        services.AddTransient<LabelingMachineUutSenderService>();
         services.AddTransient<RestartOnCrashService>();
         services.AddTransient<ServiceProvider>();
         services.AddTransient<SfcSimulatorService>();
         services.AddTransient<StopService>();
-        services.AddTransient<UutSenderServiceFactory>();
+        services.AddTransient<UutSenderServicePrototype>();
         services.AddTransient<WindowService>();
     }
 
