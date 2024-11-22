@@ -82,7 +82,7 @@
                             <Run Text="Model name:" />
                             <Run Text="{Binding WorkOrder.ModelName}" />
                         </TextBlock>
-                        <TextBlock TextAlignment="Center">
+                        <TextBlock TextAlignment="Left">
                             <Run Text="Part number:" />
                             <Run Text="{Binding WorkOrder.PartNumber}" />
                         </TextBlock>

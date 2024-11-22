@@ -53,7 +53,7 @@ public partial class PackageScannerViewModel : ViewModelBase
     [RelayCommand]
     private async Task ParsePackage()
     {
-        this.Package = this._packageParser.Parse(this.ScannedCode);
+        this.Package = this._packageParser.Parse(this.ScannedCode.ToUpper());
         this.ScannedCode = "";
         await this.GenerateCode();
     }

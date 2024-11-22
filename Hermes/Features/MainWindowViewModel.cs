@@ -196,10 +196,11 @@ namespace Hermes.Features
         {
             if (_isSyncing) return false;
 
+            ISukiToast? toast = null;
             try
             {
                 _isSyncing = true;
-                var toast = ToastManager.CreateToast()
+                toast = ToastManager.CreateToast()
                     .WithTitle(Resources.txt_syncing_database)
                     .WithLoadingState(true)
                     .WithContent(Resources.txt_loading)
@@ -207,7 +208,6 @@ namespace Hermes.Features
                 await _dataBaseSyncService.Sync(progress =>
                     toast.Content = progress);
                 await Task.Delay(TimeSpan.FromSeconds(2));
-                ToastManager.Dismiss(toast);
                 this.ShowSuccessToast(Resources.txt_sync_database);
                 return true;
             }
@@ -218,6 +218,11 @@ namespace Hermes.Features
             }
             finally
             {
+                if (toast != null)
+                {
+                    ToastManager.Dismiss(toast);
+                }
+
                 _isSyncing = false;
             }
         }
