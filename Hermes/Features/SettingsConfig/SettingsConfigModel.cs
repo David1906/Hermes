@@ -46,7 +46,7 @@ public partial class SettingsConfigModel(
         Description = "c_settings_header_database_server",
         Category = "c_settings_category_general",
         Group = "c_settings_group_common")]
-    private string _databaseServer = "10.12.204.48";
+    private string _databaseServer = "10.12.204.254";
 
     [ObservableProperty]
     [property: Config(
@@ -54,7 +54,7 @@ public partial class SettingsConfigModel(
         Description = "c_settings_header_update_manager_url",
         Category = "c_settings_category_general",
         Group = "c_settings_group_common")]
-    private string _updateManagerUrl = @"10.12.204.48/hermes/download";
+    private string _updateManagerUrl = @"10.12.204.254/hermes/download";
 
     [ObservableProperty]
     [property: Config(

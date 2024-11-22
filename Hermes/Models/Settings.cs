@@ -10,7 +10,7 @@ public class Settings
 
     public LanguageType Language { get; set; } = LanguageType.En;
     public int WaitDelayMilliseconds { get; set; } = 100;
-    public string DatabaseServer { get; set; } = "10.12.204.48";
+    public string DatabaseServer { get; set; } = "10.12.204.254";
     public StationType Station { get; set; } = StationType.SpiBottom;
     public MachineType Machine { get; set; } = MachineType.Spi;
     public string StationId { get; set; } = "";
@@ -40,7 +40,7 @@ public class Settings
     public bool EnableRuleThreeFiveTen { get; set; } = true;
     public bool EnableMachineStop { get; set; } = true;
     public string CriticalLocations { get; set; } = "U1";
-    public string UpdateManagerUrl { get; set; } = @"http://10.12.204.48/hermes/download";
+    public string UpdateManagerUrl { get; set; } = @"http://10.12.204.254/hermes/download";
     public string ScannerFilter { get; set; } = @"1A\w+$";
     public bool AutoSyncDatabase { get; set; } = true;
 
