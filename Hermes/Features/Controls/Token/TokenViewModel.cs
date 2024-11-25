@@ -32,7 +32,7 @@ public partial class TokenViewModel : ViewModelBase, ITokenViewModel
 
     [ObservableProperty] private bool _isUnlocked;
     [ObservableProperty] private string _watermark = Resources.txt_employee;
-    private readonly UserRemoteRepository _userRemoteRepository;
+    private readonly UserRepositoryProxy _userRepositoryProxy;
     public event EventHandler? Unlocked;
 
     private readonly List<DepartmentType> _departments = [DepartmentType.All];
@@ -40,9 +40,9 @@ public partial class TokenViewModel : ViewModelBase, ITokenViewModel
 
     public TokenViewModel(
         Settings settings,
-        UserRemoteRepository userRemoteRepository)
+        UserRepositoryProxy userRepositoryProxyProxy)
     {
-        this._userRemoteRepository = userRemoteRepository;
+        this._userRepositoryProxy = userRepositoryProxyProxy;
         this._settings = settings;
     }
 
@@ -53,7 +53,7 @@ public partial class TokenViewModel : ViewModelBase, ITokenViewModel
         {
             try
             {
-                var user = await this._userRemoteRepository.FindUser(this.UserName, this.Password);
+                var user = await this._userRepositoryProxy.FindUser(this.UserName, this.Password);
                 var validation = this.Validate(user);
                 if (validation != null)
                 {
@@ -141,7 +141,7 @@ public partial class TokenViewModel : ViewModelBase, ITokenViewModel
 
     public TokenViewModel Clone()
     {
-        return new TokenViewModel(this._settings, this._userRemoteRepository)
+        return new TokenViewModel(this._settings, this._userRepositoryProxy)
         {
             ToastManager = this.ToastManager
         };
