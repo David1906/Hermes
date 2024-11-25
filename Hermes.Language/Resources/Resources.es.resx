@@ -893,4 +893,7 @@
     <data name="c_settings_description_delete_old_backup_files_on_sunday" xml:space="preserve">
         <value>Borrar los archivos de la carpeta backup que se crearon hace 90 dias o más</value>
     </data>
+    <data name="txt_load" xml:space="preserve">
+        <value>Cargar</value>
+    </data>
 </root>

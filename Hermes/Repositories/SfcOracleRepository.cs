@@ -68,7 +68,7 @@ public class SfcOracleRepository : ISfcRepository
     {
         var packages = await this.FindAllPackagesTracking(
             line,
-            fromDate: DateTime.Now.AddDays(-1),
+            fromDate: DateTime.Now.AddDays(-2),
             toDate: DateTime.Now,
             onlyWithAvailableQty: true);
         return packages

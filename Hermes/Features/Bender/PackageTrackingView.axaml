@@ -152,7 +152,7 @@
                                                 HorizontalContentAlignment="Center"
                                                 Command="{Binding $parent[UserControl].((local:PackageTrackingViewModel)DataContext).LoadCommand}"
                                                 CommandParameter="{Binding .}"
-                                                Content="Load"
+                                                Content="{x:Static lang:Resources.txt_load}"
                                                 Padding="5"
                                                 IsVisible="{Binding CanLoad}" />
 

@@ -902,4 +902,7 @@
     <data name="c_settings_description_delete_old_backup_files_on_sunday" xml:space="preserve">
         <value>Delete files from the backup folder that were created 90 days ago or more</value>
     </data>
+    <data name="txt_load" xml:space="preserve">
+        <value>Load</value>
+    </data>
 </root>
