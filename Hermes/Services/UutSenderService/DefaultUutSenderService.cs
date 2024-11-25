@@ -57,7 +57,13 @@ public class DefaultUutSenderService : UutSenderService
     {
         this._folderWatcherService
             .TextDocumentCreated
-            .Select(this.SendUnitUnderTest)
+            .SelectAwait(
+                async (textDocument, _) =>
+                {
+                    await this.SendUnitUnderTest(textDocument);
+                    return textDocument;
+                },
+                maxConcurrent: 1)
             .Subscribe()
             .AddTo(ref Disposables);
     }
