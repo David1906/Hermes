@@ -43,6 +43,7 @@ public class Settings
     public string UpdateManagerUrl { get; set; } = @"http://10.12.204.254/hermes/download";
     public string ScannerFilter { get; set; } = @"1A\w+$";
     public bool AutoSyncDatabase { get; set; } = true;
+    public bool DeleteOldBackupFilesOnSunday { get; set; } = true;
 
     #endregion
 

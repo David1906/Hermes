@@ -3,8 +3,8 @@ using Hermes.Models;
 using R3;
 using System.IO;
 using System.Threading.Tasks;
-using System;
 using System.Threading;
+using System;
 
 namespace Hermes.Services;
 
@@ -15,7 +15,9 @@ public class FolderWatcherService : IDisposable
     private readonly FileService _fileService;
     private readonly FileSystemWatcherRx _fileSystemWatcherRx;
 
-    public FolderWatcherService(FileService fileService, FileSystemWatcherRx fileSystemWatcherRx)
+    public FolderWatcherService(
+        FileService fileService,
+        FileSystemWatcherRx fileSystemWatcherRx)
     {
         this._fileService = fileService;
         this._fileSystemWatcherRx = fileSystemWatcherRx;

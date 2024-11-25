@@ -34,6 +34,7 @@ public partial class UutProcessorViewModel : PageBase
     private readonly FileService _fileService;
     private readonly ILogger _logger;
     private readonly Session _session;
+    private readonly Settings _settings;
     private readonly StopService _stopService;
     private readonly UnitUnderTestRepository _unitUnderTestRepository;
     private readonly UutSenderService _uutSenderService;
@@ -58,6 +59,7 @@ public partial class UutProcessorViewModel : PageBase
         this._fileService = fileService;
         this._logger = logger;
         this._session = session;
+        this._settings = settings;
         this._stopService = stopService;
         this._unitUnderTestRepository = unitUnderTestRepository;
         this._uutSenderService = uutSenderServicePrototype.Build();
@@ -104,6 +106,15 @@ public partial class UutProcessorViewModel : PageBase
                 await this.Persist(x.unitUnderTest);
             })
             .AddTo(ref Disposables);
+
+        if (this._settings.DeleteOldBackupFilesOnSunday)
+        {
+            Observable.Interval(TimeSpan.FromHours(1))
+                .Where(_ => DateTime.Now.DayOfWeek == DayOfWeek.Sunday)
+                .ThrottleFirst(TimeSpan.FromHours(24))
+                .Subscribe(_ => this._fileService.DeleteOldBackupFiles(TimeSpan.FromDays(90)))
+                .AddTo(ref Disposables);
+        }
     }
 
     protected override void OnActivated()

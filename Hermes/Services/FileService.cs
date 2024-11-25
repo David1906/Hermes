@@ -5,6 +5,7 @@ using Polly;
 using System.IO;
 using System.Threading.Tasks;
 using System;
+using System.Linq;
 using Hermes.Models;
 
 namespace Hermes.Services;
@@ -128,7 +129,7 @@ public class FileService
             fileNameWithoutExtension + _settings.InputFileExtension.GetDescription());
         await WriteAllTextAsync(path, content);
     }
-    
+
     public virtual async Task WriteResponseToInputPathAsync(string fileNameWithoutExtension, string content)
     {
         var fn = GetFileNameWithoutCurrentDate(fileNameWithoutExtension);
@@ -167,5 +168,26 @@ public class FileService
     public virtual bool FileExists(string fullPath)
     {
         return File.Exists(fullPath);
+    }
+
+    public void DeleteOldBackupFiles(TimeSpan olderThanTimeSpan)
+    {
+        if (!Directory.Exists(_settings.BackupPath)) return;
+
+        Directory.GetFiles(_settings.BackupPath)
+            .Select(f => new FileInfo(f))
+            .Where(f => f.CreationTime.Date <= (DateTime.Now - olderThanTimeSpan).Date)
+            .ToList()
+            .ForEach(f =>
+            {
+                try
+                {
+                    f.Delete();
+                }
+                catch (Exception)
+                {
+                    // ignored
+                }
+            });
     }
 }

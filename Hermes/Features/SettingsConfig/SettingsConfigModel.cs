@@ -54,7 +54,7 @@ public partial class SettingsConfigModel(
         Description = "c_settings_header_update_manager_url",
         Category = "c_settings_category_general",
         Group = "c_settings_group_common")]
-    private string _updateManagerUrl = @"10.12.204.254/hermes/download";
+    private string _updateManagerUrl = @"http://10.12.204.254/hermes/download";
 
     [ObservableProperty]
     [property: Config(
@@ -187,6 +187,14 @@ public partial class SettingsConfigModel(
         Category = "c_settings_category_uut_processor",
         Group = "c_settings_group_common")]
     private string _scannerFilter = @"1A\w+$";
+
+    [ObservableProperty]
+    [property: Config(
+        Header = "c_settings_header_delete_old_backup_files_on_sunday",
+        Description = "c_settings_description_delete_old_backup_files_on_sunday",
+        Category = "c_settings_category_uut_processor",
+        Group = "c_settings_group_common")]
+    private bool _deleteOldBackupFilesOnSunday = true;
 
     [ObservableProperty]
     [property: Config(

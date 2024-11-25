@@ -887,4 +887,10 @@
     <data name="txt_stops" xml:space="preserve">
         <value>Pantallas rojas</value>
     </data>
+    <data name="c_settings_header_delete_old_backup_files_on_sunday" xml:space="preserve">
+        <value>Borrar archivos viejos de backup</value>
+    </data>
+    <data name="c_settings_description_delete_old_backup_files_on_sunday" xml:space="preserve">
+        <value>Borrar los archivos de la carpeta backup que se crearon hace 90 dias o más</value>
+    </data>
 </root>

@@ -168,6 +168,15 @@ namespace Hermes.Language {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Delete files from the backup folder that were created 90 days ago or more.
+        /// </summary>
+        public static string c_settings_description_delete_old_backup_files_on_sunday {
+            get {
+                return ResourceManager.GetString("c_settings_description_delete_old_backup_files_on_sunday", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Show stop window when a failure is detected in a component listed in the &quot;Critical Locations&quot; setting..
         /// </summary>
         public static string c_settings_description_enable_critical_location_stop {
@@ -337,6 +346,15 @@ namespace Hermes.Language {
         public static string c_settings_header_database_server {
             get {
                 return ResourceManager.GetString("c_settings_header_database_server", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Delete old backup files.
+        /// </summary>
+        public static string c_settings_header_delete_old_backup_files_on_sunday {
+            get {
+                return ResourceManager.GetString("c_settings_header_delete_old_backup_files_on_sunday", resourceCulture);
             }
         }
         
