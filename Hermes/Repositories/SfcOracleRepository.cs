@@ -95,7 +95,7 @@ public class SfcOracleRepository : ISfcRepository
                                           FROM (
                                               SELECT MAX(pkg_track.PKGID)             AS Id,
                                                      MAX(pkg_track.LINE)              AS Line,
-                                                     MAX(SFIS1.C_PCB_PRINT_T.QTY)     AS Quantity,
+                                                     MAX(SFISM4.R_PKGID_BOM_T.QTY)     AS Quantity,
                                                      (CASE WHEN MAX(SFIS1.C_PCB_PRINT_T.SERIAL_NUMBER) IS NULL THEN 0 ELSE  COUNT(*) END ) AS QuantityUsed,
                                                      MAX(CDATE)                       AS OpenedAt,
                                                      MAX(pkg_track.LOADED_AT)         AS LoadedAt,
