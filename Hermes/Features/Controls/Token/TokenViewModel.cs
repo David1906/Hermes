@@ -85,13 +85,16 @@ public partial class TokenViewModel : ViewModelBase, ITokenViewModel
             return;
         }
 
-        ToastManager.CreateToast()
-            .OfType(NotificationType.Error)
-            .WithTitle(Resources.txt_error)
-            .WithContent(message)
-            .Dismiss().After(TimeSpan.FromSeconds(3))
-            .Dismiss().ByClicking()
-            .Queue();
+        Dispatcher.UIThread.Invoke(() =>
+        {
+            ToastManager.CreateToast()
+                .OfType(NotificationType.Error)
+                .WithTitle(Resources.txt_error)
+                .WithContent(message)
+                .Dismiss().After(TimeSpan.FromSeconds(3))
+                .Dismiss().ByClicking()
+                .Queue();
+        });
     }
 
     private string? Validate(User user)
