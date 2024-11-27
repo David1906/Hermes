@@ -22,6 +22,14 @@ public class LabelingMachineUutSenderService : DefaultUutSenderService
         this._fileService = fileService;
     }
 
+    protected override void StartService()
+    {
+        base.StartService();
+        this._fileService
+            .DeleteFileIfExists(_settings.InputPath + @"\label.txt")
+            .Wait();
+    }
+
     protected override async Task SendUnitUnderTest(TextDocument textDocument)
     {
         await base.SendUnitUnderTest(textDocument);
@@ -32,5 +40,7 @@ public class LabelingMachineUutSenderService : DefaultUutSenderService
                 this.UnitUnderTest.Value.FileName,
                 sfcResponse.Content);
         }
+
+        await _fileService.DeleteFileIfExists(textDocument.FullPath);
     }
 }

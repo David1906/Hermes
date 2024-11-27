@@ -11,7 +11,7 @@ public class DefaultUutSenderService : UutSenderService
 {
     private readonly FolderWatcherService _folderWatcherService;
     private readonly ILogger _logger;
-    private readonly Settings _settings;
+    protected readonly Settings _settings;
     private readonly UnitUnderTestBuilder _unitUnderTestBuilder;
 
     public DefaultUutSenderService(

@@ -81,7 +81,7 @@ public class LabelingMachineUnitUnderTestParser : IUnitUnderTestParser
                     _settings.Line.ToUpperString());
             if (!package.IsNull)
             {
-                packageId = package.Id;
+                packageId = "S" + package.Id;
             }
         }
         catch (Exception e)
