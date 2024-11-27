@@ -25,7 +25,7 @@ public class UnitUnderTestBuilder
     private bool _isScanError;
     private bool _isSfcResponseOk;
     private string _message = "";
-    private DateTime _createdAt = DateTime.Now;
+    private DateTime? _createdAt;
 
     private readonly FileService _fileService;
     private readonly Random _random = new();
@@ -93,7 +93,7 @@ public class UnitUnderTestBuilder
             IsFail = parser.ParseIsFail(content),
             SerialNumber = parser.ParseSerialNumber(content),
             Defects = parser.ParseDefects(content),
-            CreatedAt = this._createdAt,
+            CreatedAt = this._createdAt ?? DateTime.Now,
             Message = this._message,
             SfcResponse = GetSfcResponse()
         };
