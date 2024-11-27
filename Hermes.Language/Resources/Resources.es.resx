@@ -896,4 +896,16 @@
     <data name="txt_load" xml:space="preserve">
         <value>Cargar</value>
     </data>
+    <data name="txt_type" xml:space="preserve">
+        <value>Tipo</value>
+    </data>
+    <data name="enum_machine" xml:space="preserve">
+        <value>Máquina</value>
+    </data>
+    <data name="enum_line" xml:space="preserve">
+        <value>Línea</value>
+    </data>
+    <data name="enum_none" xml:space="preserve">
+        <value>Ningúno</value>
+    </data>
 </root>

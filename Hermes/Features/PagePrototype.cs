@@ -24,7 +24,7 @@ public class PagePrototype(Settings settings)
         new(typeof(AboutViewModel)),
 
         new(typeof(BenderViewModel),
-            hideFromStation: AllExcept([StationType.Labeling])),
+            hideFromStation: AllExcept([StationType.Labeling, StationType.LabelingMachine])),
 
         new(typeof(LoginViewModel)),
 

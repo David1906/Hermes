@@ -905,4 +905,16 @@
     <data name="txt_load" xml:space="preserve">
         <value>Load</value>
     </data>
+    <data name="txt_type" xml:space="preserve">
+        <value>Type</value>
+    </data>
+    <data name="enum_machine" xml:space="preserve">
+        <value>Machine</value>
+    </data>
+    <data name="enum_line" xml:space="preserve">
+        <value>Line</value>
+    </data>
+    <data name="enum_none" xml:space="preserve">
+        <value>None</value>
+    </data>
 </root>

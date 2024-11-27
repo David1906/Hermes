@@ -102,7 +102,7 @@
                         <DataGridTextColumn Header="{x:Static lang:Resources.txt_serial_number}"
                                             Binding="{Binding SerialNumber}" />
 
-                        <DataGridTextColumn Header="{x:Static lang:Resources.txt_stop}"
+                        <DataGridTextColumn Header="{x:Static lang:Resources.txt_type}"
                                             Binding="{Binding Stop.Type,  Converter={x:Static converters:EnumToTranslatedTextConverters.Generic}}" />
 
                         <DataGridTextColumn Header="{x:Static lang:Resources.txt_details}"
@@ -110,9 +110,6 @@
 
                         <DataGridTextColumn Header="{x:Static lang:Resources.txt_actions}"
                                             Binding="{Binding Stop.Actions}" />
-
-                        <DataGridTextColumn Header="{x:Static lang:Resources.txt_is_restored}"
-                                            Binding="{Binding Stop.IsRestored, Converter={x:Static converters:BoolToTextConverters.TrueFalse}}" />
 
                         <DataGridTextColumn Header="{x:Static lang:Resources.txt_user}"
                                             Binding="{Binding Stop.UsersConcatenated}" />

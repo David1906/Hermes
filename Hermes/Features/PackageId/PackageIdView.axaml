@@ -9,6 +9,7 @@
              xmlns:suki="clr-namespace:SukiUI.Controls;assembly=SukiUI"
              xmlns:sukiUi="clr-namespace:SukiUI.Controls;assembly=SukiUI"
              xmlns:theme="clr-namespace:SukiUI.Theme;assembly=SukiUI"
+             xmlns:p1="https://github.com/kikipoulet/SukiUI"
              mc:Ignorable="d" d:DesignWidth="1200" d:DesignHeight="450"
              x:Class="Hermes.Features.PackageId.PackageIdView"
              x:DataType="local:PackageIdViewModel">
@@ -47,7 +48,8 @@
 
                             <TextBox x:Name="WorkOrderTextBox"
                                      Text="{Binding WorkOrderText, Mode=TwoWay}"
-                                     MinWidth="250">
+                                     p1:TextBoxExtensions.AddDeleteButton="True"
+                                     Width="300">
                                 <TextBox.KeyBindings>
                                     <KeyBinding Gesture="Enter" Command="{Binding WorkOrderKeyDownCommand}" />
                                 </TextBox.KeyBindings>
@@ -127,7 +129,8 @@
 
                             <TextBox x:Name="PkgidTextBox"
                                      Text="{Binding PkgidText, Mode=TwoWay}"
-                                     MinWidth="250">
+                                     p1:TextBoxExtensions.AddDeleteButton="True"
+                                     Width="300">
                                 <TextBox.KeyBindings>
                                     <KeyBinding Gesture="Enter" Command="{Binding PkgidKeyDownCommand}" />
                                 </TextBox.KeyBindings>

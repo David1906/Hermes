@@ -890,6 +890,15 @@ namespace Hermes.Language {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Line.
+        /// </summary>
+        public static string enum_line {
+            get {
+                return ResourceManager.GetString("enum_line", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Loaded.
         /// </summary>
         public static string enum_loaded {
@@ -899,11 +908,29 @@ namespace Hermes.Language {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Machine.
+        /// </summary>
+        public static string enum_machine {
+            get {
+                return ResourceManager.GetString("enum_machine", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Manufacturing.
         /// </summary>
         public static string enum_mfg {
             get {
                 return ResourceManager.GetString("enum_mfg", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to None.
+        /// </summary>
+        public static string enum_none {
+            get {
+                return ResourceManager.GetString("enum_none", resourceCulture);
             }
         }
         
@@ -2587,6 +2614,15 @@ namespace Hermes.Language {
         public static string txt_true {
             get {
                 return ResourceManager.GetString("txt_true", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Type.
+        /// </summary>
+        public static string txt_type {
+            get {
+                return ResourceManager.GetString("txt_type", resourceCulture);
             }
         }
         
