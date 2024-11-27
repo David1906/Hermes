@@ -47,7 +47,7 @@ public partial class LoginViewModel : PageBase
         this._session
             .LoggedUser
             .Where(user => !user.IsNull)
-            .Delay(TimeSpan.FromHours(1))
+            .Debounce(TimeSpan.FromMinutes(30))
             .Do(_ => this.Logout())
             .Subscribe()
             .AddTo(ref Disposables);
