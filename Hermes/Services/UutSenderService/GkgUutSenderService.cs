@@ -66,7 +66,7 @@ public class GkgUutSenderService : UutSenderService
     protected override void SetupReactiveExtensions()
     {
         this._serialNumberScannedSubject = new Subject<string>();
-        this.SerialNumberReceived()
+        this.TriggerReceived()
             .Subscribe(serialNumber => this._serialNumberScannedSubject.OnNext(serialNumber))
             .AddTo(ref Disposables);
 
@@ -120,11 +120,12 @@ public class GkgUutSenderService : UutSenderService
             .Where(string.IsNullOrEmpty);
     }
 
-    private Observable<string> SerialNumberReceived()
+    private Observable<string> TriggerReceived()
     {
         return this._serialPortRx
             .DataReceived
             .Where(x => x.Contains(SerialScanner.TriggerCommand))
+            .ThrottleFirst(TimeSpan.FromSeconds(10))
             .Do(_ => _logger.Debug($"Trigger received"))
             .SelectAwait(async (_, __) => await ScanSerialNumber())
             .Do(_ => _logger.Debug("Serial number scanned"));
