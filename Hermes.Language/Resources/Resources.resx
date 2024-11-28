@@ -917,4 +917,16 @@
     <data name="enum_none" xml:space="preserve">
         <value>None</value>
     </data>
+    <data name="c_settings_group_screen_printer" xml:space="preserve">
+        <value>Screen printer</value>
+    </data>
+    <data name="c_settings_group_labeling_machine" xml:space="preserve">
+        <value>Labeling machine</value>
+    </data>
+    <data name="c_settings_header_overwrite_package_id" xml:space="preserve">
+        <value>Overwrite PackageId</value>
+    </data>
+    <data name="c_settings_description_overwrite_package_id" xml:space="preserve">
+        <value>Overwrite the PackageId using the packages loaded in the "Bender" module</value>
+    </data>
 </root>

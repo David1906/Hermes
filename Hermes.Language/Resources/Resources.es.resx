@@ -908,4 +908,16 @@
     <data name="enum_none" xml:space="preserve">
         <value>Ningúno</value>
     </data>
+    <data name="c_settings_group_screen_printer" xml:space="preserve">
+        <value>Impreora de pasta</value>
+    </data>
+    <data name="c_settings_group_labeling_machine" xml:space="preserve">
+        <value>Etiquetadora</value>
+    </data>
+    <data name="c_settings_header_overwrite_package_id" xml:space="preserve">
+        <value>Sobreescribir PackageId</value>
+    </data>
+    <data name="c_settings_description_overwrite_package_id" xml:space="preserve">
+        <value>Sobreescribe el PackageId utilizando los paquetes cargados en el módulo "Bender"</value>
+    </data>
 </root>

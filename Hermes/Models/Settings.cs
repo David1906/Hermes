@@ -44,6 +44,7 @@ public class Settings
     public string ScannerFilter { get; set; } = @"1A\w+$";
     public bool AutoSyncDatabase { get; set; } = true;
     public bool DeleteOldBackupFilesOnSunday { get; set; } = true;
+    public bool OverwritePackageId { get; set; } = true;
 
     #endregion
 

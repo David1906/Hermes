@@ -224,6 +224,15 @@ namespace Hermes.Language {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Overwrite the PackageId using the packages loaded in the &quot;Bender&quot; module.
+        /// </summary>
+        public static string c_settings_description_overwrite_package_id {
+            get {
+                return ResourceManager.GetString("c_settings_description_overwrite_package_id", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Filters the scanned text with the specified regex, taking the first match.
         /// </summary>
         public static string c_settings_description_scanner_filter {
@@ -269,11 +278,29 @@ namespace Hermes.Language {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Labeling machine.
+        /// </summary>
+        public static string c_settings_group_labeling_machine {
+            get {
+                return ResourceManager.GetString("c_settings_group_labeling_machine", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Paths.
         /// </summary>
         public static string c_settings_group_paths {
             get {
                 return ResourceManager.GetString("c_settings_group_paths", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Screen printer.
+        /// </summary>
+        public static string c_settings_group_screen_printer {
+            get {
+                return ResourceManager.GetString("c_settings_group_screen_printer", resourceCulture);
             }
         }
         
@@ -454,6 +481,15 @@ namespace Hermes.Language {
         public static string c_settings_header_max_retries {
             get {
                 return ResourceManager.GetString("c_settings_header_max_retries", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Overwrite PackageId.
+        /// </summary>
+        public static string c_settings_header_overwrite_package_id {
+            get {
+                return ResourceManager.GetString("c_settings_header_overwrite_package_id", resourceCulture);
             }
         }
         

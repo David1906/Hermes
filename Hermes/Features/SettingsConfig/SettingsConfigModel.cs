@@ -139,31 +139,6 @@ public partial class SettingsConfigModel(
     #region UutProcessor
 
     [ObservableProperty]
-    [property: DropdownConfig(RuntimeItemsSourceMethodName = "GetPortNames")]
-    [property: Config(
-        Header = "c_settings_header_gkg_tunnel_com_port",
-        Description = "c_settings_header_gkg_tunnel_com_port",
-        Category = "c_settings_category_uut_processor",
-        Group = "c_settings_group_common")]
-    private string _gkgTunnelComPort = "COM50";
-
-    [ObservableProperty]
-    [property: DropdownConfig(RuntimeItemsSourceMethodName = "GetPortNames")]
-    [property: Config(
-        Header = "c_settings_header_scanner_com_port",
-        Description = "c_settings_header_scanner_com_port",
-        Category = "c_settings_category_uut_processor",
-        Group = "c_settings_group_common")]
-    private string _scannerComPort = "COM40";
-
-    private readonly RangeObservableCollection<string> _comPorts = [];
-
-    public RangeObservableCollection<string> GetPortNames()
-    {
-        return _comPorts;
-    }
-
-    [ObservableProperty]
     [property: NumericConfig(Minimum = 0, Maximum = 5, Increment = 1)]
     [property: Config(
         Header = "c_settings_header_max_retries",
@@ -291,6 +266,48 @@ public partial class SettingsConfigModel(
         Group = "c_settings_group_time")]
     private int _uutSuccessWindowTimeoutSeconds = 5;
 
+    #region Screen printer
+
+    [ObservableProperty]
+    [property: DropdownConfig(RuntimeItemsSourceMethodName = "GetPortNames")]
+    [property: Config(
+        Header = "c_settings_header_gkg_tunnel_com_port",
+        Description = "c_settings_header_gkg_tunnel_com_port",
+        Category = "c_settings_category_uut_processor",
+        Group = "c_settings_group_screen_printer")]
+    private string _gkgTunnelComPort = "COM50";
+
+    [ObservableProperty]
+    [property: DropdownConfig(RuntimeItemsSourceMethodName = "GetPortNames")]
+    [property: Config(
+        Header = "c_settings_header_scanner_com_port",
+        Description = "c_settings_header_scanner_com_port",
+        Category = "c_settings_category_uut_processor",
+        Group = "c_settings_group_screen_printer")]
+    private string _scannerComPort = "COM40";
+
+    private readonly RangeObservableCollection<string> _comPorts = [];
+
+    public RangeObservableCollection<string> GetPortNames()
+    {
+        return _comPorts;
+    }
+
+    #endregion
+
+    #region Labeling machine
+
+    [ObservableProperty]
+    [property: DropdownConfig(RuntimeItemsSourceMethodName = "GetPortNames")]
+    [property: Config(
+        Header = "c_settings_header_overwrite_package_id",
+        Description = "c_settings_description_overwrite_package_id",
+        Category = "c_settings_category_uut_processor",
+        Group = "c_settings_group_labeling_machine")]
+    private bool _overwritePackageId = true;
+
+    #endregion
+
     #endregion
 
     partial void OnMachineChanged(MachineType value)
@@ -350,6 +367,7 @@ public partial class SettingsConfigModel(
                 EnableMachineStop = true;
                 EnableRuleThreeFiveTen = false;
                 EnableCriticalLocationStop = false;
+                OverwritePackageId = true;
                 break;
             default:
                 LogfileType = LogfileType.Default;

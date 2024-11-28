@@ -65,7 +65,7 @@ public class LabelingMachineUnitUnderTestParser : IUnitUnderTestParser
 
     public async Task<string> GetContentAsync(string content)
     {
-        if (string.IsNullOrEmpty(content)) return content;
+        if (string.IsNullOrEmpty(content) || !_settings.OverwritePackageId) return content;
 
         var packageId = await GetPackageIdAsync(content);
         return PkgIdRgx.Replace(content, m => m.Groups[1].Value + packageId + m.Groups[3].Value);
