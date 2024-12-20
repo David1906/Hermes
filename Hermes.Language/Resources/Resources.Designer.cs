@@ -233,6 +233,51 @@ namespace Hermes.Language {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Baud rate of the scanner.
+        /// </summary>
+        public static string c_settings_description_scanner_com_baud_rate {
+            get {
+                return ResourceManager.GetString("c_settings_description_scanner_com_baud_rate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Data bits of the scanner.
+        /// </summary>
+        public static string c_settings_description_scanner_com_data_bits {
+            get {
+                return ResourceManager.GetString("c_settings_description_scanner_com_data_bits", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Scanner filter regex.
+        /// </summary>
+        public static string c_settings_description_scanner_com_filter {
+            get {
+                return ResourceManager.GetString("c_settings_description_scanner_com_filter", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Parity of the scanner.
+        /// </summary>
+        public static string c_settings_description_scanner_com_parity {
+            get {
+                return ResourceManager.GetString("c_settings_description_scanner_com_parity", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Stop bits of the scanner.
+        /// </summary>
+        public static string c_settings_description_scanner_com_stop_bits {
+            get {
+                return ResourceManager.GetString("c_settings_description_scanner_com_stop_bits", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Filters the scanned text with the specified regex, taking the first match.
         /// </summary>
         public static string c_settings_description_scanner_filter {
@@ -494,6 +539,33 @@ namespace Hermes.Language {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Baud rate.
+        /// </summary>
+        public static string c_settings_header_scanner_com_baud_rate {
+            get {
+                return ResourceManager.GetString("c_settings_header_scanner_com_baud_rate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Data bits.
+        /// </summary>
+        public static string c_settings_header_scanner_com_data_bits {
+            get {
+                return ResourceManager.GetString("c_settings_header_scanner_com_data_bits", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Parity.
+        /// </summary>
+        public static string c_settings_header_scanner_com_parity {
+            get {
+                return ResourceManager.GetString("c_settings_header_scanner_com_parity", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Scanner com port.
         /// </summary>
         public static string c_settings_header_scanner_com_port {
@@ -503,11 +575,11 @@ namespace Hermes.Language {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Scanner filter regex.
+        ///   Looks up a localized string similar to Stop bits.
         /// </summary>
-        public static string c_settings_header_scanner_filter {
+        public static string c_settings_header_scanner_com_stop_bits {
             get {
-                return ResourceManager.GetString("c_settings_header_scanner_filter", resourceCulture);
+                return ResourceManager.GetString("c_settings_header_scanner_com_stop_bits", resourceCulture);
             }
         }
         

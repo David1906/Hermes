@@ -848,7 +848,7 @@
     <data name="enum_sevendays" xml:space="preserve">
         <value>Seven days</value>
     </data>
-    <data name="c_settings_header_scanner_filter" xml:space="preserve">
+    <data name="c_settings_description_scanner_com_filter" xml:space="preserve">
         <value>Scanner filter regex</value>
     </data>
     <data name="c_settings_description_scanner_filter" xml:space="preserve">
@@ -928,5 +928,29 @@
     </data>
     <data name="c_settings_description_overwrite_package_id" xml:space="preserve">
         <value>Overwrite the PackageId using the packages loaded in the "Bender" module</value>
+    </data>
+    <data name="c_settings_header_scanner_com_baud_rate" xml:space="preserve">
+        <value>Baud rate</value>
+    </data>
+    <data name="c_settings_description_scanner_com_baud_rate" xml:space="preserve">
+        <value>Baud rate of the scanner</value>
+    </data>
+    <data name="c_settings_header_scanner_com_data_bits" xml:space="preserve">
+        <value>Data bits</value>
+    </data>
+    <data name="c_settings_description_scanner_com_data_bits" xml:space="preserve">
+        <value>Data bits of the scanner</value>
+    </data>
+    <data name="c_settings_header_scanner_com_parity" xml:space="preserve">
+        <value>Parity</value>
+    </data>
+    <data name="c_settings_description_scanner_com_parity" xml:space="preserve">
+        <value>Parity of the scanner</value>
+    </data>
+    <data name="c_settings_header_scanner_com_stop_bits" xml:space="preserve">
+        <value>Stop bits</value>
+    </data>
+    <data name="c_settings_description_scanner_com_stop_bits" xml:space="preserve">
+        <value>Stop bits of the scanner</value>
     </data>
 </root>

@@ -842,7 +842,7 @@
     <data name="c_settings_description_scanner_filter" xml:space="preserve">
         <value>Filtra el texto escaneado utilizando la expresión regular especificada, toma la primera coincidencia.</value>
     </data>
-    <data name="c_settings_header_scanner_filter" xml:space="preserve">
+    <data name="c_settings_description_scanner_com_filter" xml:space="preserve">
         <value>Filtro de escáner (regex)</value>
     </data>
     <data name="txt_details" xml:space="preserve">
@@ -909,7 +909,7 @@
         <value>Ningúno</value>
     </data>
     <data name="c_settings_group_screen_printer" xml:space="preserve">
-        <value>Impreora de pasta</value>
+        <value>Impresora de pasta</value>
     </data>
     <data name="c_settings_group_labeling_machine" xml:space="preserve">
         <value>Etiquetadora</value>
@@ -919,5 +919,29 @@
     </data>
     <data name="c_settings_description_overwrite_package_id" xml:space="preserve">
         <value>Sobreescribe el PackageId utilizando los paquetes cargados en el módulo "Bender"</value>
+    </data>
+    <data name="c_settings_description_scanner_com_baud_rate" xml:space="preserve">
+        <value>Baud rate del escáner</value>
+    </data>
+    <data name="c_settings_header_scanner_com_baud_rate" xml:space="preserve">
+        <value>Baud rate </value>
+    </data>
+    <data name="c_settings_header_scanner_com_data_bits" xml:space="preserve">
+        <value>Data bits </value>
+    </data>
+    <data name="c_settings_header_scanner_com_parity" xml:space="preserve">
+        <value>Parity </value>
+    </data>
+    <data name="c_settings_header_scanner_com_stop_bits" xml:space="preserve">
+        <value>Stop bits </value>
+    </data>
+    <data name="c_settings_description_scanner_com_data_bits" xml:space="preserve">
+        <value>Data bits del escáner</value>
+    </data>
+    <data name="c_settings_description_scanner_com_parity" xml:space="preserve">
+        <value>Parity del escáner</value>
+    </data>
+    <data name="c_settings_description_scanner_com_stop_bits" xml:space="preserve">
+        <value>Stop bits del escáner</value>
     </data>
 </root>

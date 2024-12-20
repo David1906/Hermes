@@ -1,6 +1,6 @@
-﻿using System.Text.Json.Serialization;
-using Hermes.Cipher.Extensions;
+﻿using Hermes.Cipher.Extensions;
 using Hermes.Types;
+using System.IO.Ports;
 
 namespace Hermes.Models;
 
@@ -33,6 +33,10 @@ public class Settings
     public int MaxSfcRetries { get; set; } = 1;
     public string GkgTunnelComPort { get; set; } = "COM50";
     public string ScannerComPort { get; set; } = "COM40";
+    public int ScannerComBaudRate { get; set; } = 115200;
+    public int ScannerComDataBits { get; set; } = 8;
+    public Parity ScannerComParity { get; set; } = Parity.None;
+    public StopBits ScannerComStopBits { get; set; } = StopBits.One;
     public string AdditionalOkSfcResponse { get; set; } = "";
     public string InputFileFilter => "*" + InputFileExtension.GetDescription();
     public string ResponseFileFilter => "*" + SfcResponseExtension.GetDescription();

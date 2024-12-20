@@ -286,6 +286,46 @@ public partial class SettingsConfigModel(
         Group = "c_settings_group_screen_printer")]
     private string _scannerComPort = "COM40";
 
+    [ObservableProperty]
+    [property: NumericConfig(Minimum = 600, Maximum = 115200, Increment = 1)]
+    [property: Config(
+        Header = "c_settings_header_scanner_com_baud_rate",
+        Description = "c_settings_description_scanner_com_baud_rate",
+        Category = "c_settings_category_uut_processor",
+        Group = "c_settings_group_screen_printer")]
+    private int _scannerComBaudRate = 115200;
+
+    [ObservableProperty]
+    [property: NumericConfig(Minimum = 7, Maximum = 8, Increment = 1)]
+    [property: Config(
+        Header = "c_settings_header_scanner_com_data_bits",
+        Description = "c_settings_description_scanner_com_data_bits",
+        Category = "c_settings_category_uut_processor",
+        Group = "c_settings_group_screen_printer")]
+    private int _scannerComDataBits = 8;
+
+    [ObservableProperty]
+    [property: DropdownConfig(RuntimeItemsSourceMethodName = "GetParity")]
+    [property: Config(
+        Header = "c_settings_header_scanner_com_parity",
+        Description = "c_settings_description_scanner_com_parity",
+        Category = "c_settings_category_uut_processor",
+        Group = "c_settings_group_screen_printer")]
+    private Parity _scannerComParity = Parity.None;
+
+    public static Parity[] GetParity = [Parity.None, Parity.Even, Parity.Odd, Parity.Mark, Parity.Space];
+
+    [ObservableProperty]
+    [property: DropdownConfig(RuntimeItemsSourceMethodName = "GetStopBits")]
+    [property: Config(
+        Header = "c_settings_header_scanner_com_stop_bits",
+        Description = "c_settings_description_scanner_com_stop_bits",
+        Category = "c_settings_category_uut_processor",
+        Group = "c_settings_group_screen_printer")]
+    private StopBits _scannerComStopBits = StopBits.One;
+
+    public static StopBits[] GetStopBits => [StopBits.One, StopBits.OnePointFive, StopBits.Two];
+
     private readonly RangeObservableCollection<string> _comPorts = [];
 
     public RangeObservableCollection<string> GetPortNames()
@@ -458,5 +498,6 @@ public partial class SettingsConfigModel(
         List<string> a = [GkgTunnelComPort, ScannerComPort];
         var ab = a.Except(_comPorts).ToList();
         _comPorts.AddRange(ab);
+        this.Load();
     }
 }

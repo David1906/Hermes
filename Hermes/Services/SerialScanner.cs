@@ -41,9 +41,12 @@ public class SerialScanner
         {
             if (_serialPort is { IsOpen: true }) return;
 
-            this._serialPort = new SerialPort(_settings.ScannerComPort, 115200, Parity.None,
-                8,
-                StopBits.One);
+            this._serialPort = new SerialPort(
+                _settings.ScannerComPort,
+                _settings.ScannerComBaudRate,
+                _settings.ScannerComParity,
+                _settings.ScannerComDataBits,
+                _settings.ScannerComStopBits);
             this._serialPort.DataReceived += Proxy;
             this._serialPort.Open();
             this.State.Value = StateType.Idle;
@@ -79,7 +82,7 @@ public class SerialScanner
         {
             _serialPort.DiscardInBuffer();
         }
-        
+
         scannedText = this.Filter(scannedText);
 
         ScannedText.OnNext(scannedText);
